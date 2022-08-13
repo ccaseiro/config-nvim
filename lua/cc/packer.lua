@@ -5,7 +5,11 @@ return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
     use 'neovim/nvim-lspconfig'
+
+    -- Colorschemes
     use 'folke/tokyonight.nvim'
+    use 'ellisonleao/gruvbox.nvim' 
+    use 'luisiacc/gruvbox-baby' 
 
     use {
         'numToStr/Comment.nvim',
