@@ -1,6 +1,7 @@
 local nnoremap = require("cc.keymap").nnoremap
 
 nnoremap("<leader>bd", "<cmd>bd<CR>")
+nnoremap("<leader>bk", "<cmd>bd<CR>")
 
 nnoremap("<leader>fs", "<cmd>w<CR>")
 
