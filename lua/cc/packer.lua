@@ -6,6 +6,13 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
     use 'neovim/nvim-lspconfig'
 
+    -- cmp
+    use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-path'
+    use 'hrsh7th/cmp-cmdline'
+    use 'hrsh7th/nvim-cmp'
+
     -- Colorschemes
     use 'folke/tokyonight.nvim'
     use 'ellisonleao/gruvbox.nvim' 
