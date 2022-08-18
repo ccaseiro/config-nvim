@@ -18,6 +18,8 @@ return require('packer').startup(function(use)
     use 'ellisonleao/gruvbox.nvim' 
     use 'luisiacc/gruvbox-baby' 
 
+    use 'linty-org/readline.nvim'
+
     use {
         'numToStr/Comment.nvim',
         config = function()
