@@ -17,6 +17,7 @@ return require('packer').startup(function(use)
     use 'folke/tokyonight.nvim'
     use 'ellisonleao/gruvbox.nvim' 
     use 'luisiacc/gruvbox-baby' 
+    use 'joshdick/onedark.vim'
 
     use 'linty-org/readline.nvim'
 
