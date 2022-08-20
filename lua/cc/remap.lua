@@ -16,6 +16,8 @@ nnoremap("<leader>o-", "<cmd>Ex<CR>")
 
 nnoremap("<leader>qq", "<cmd>qa<CR>")
 
+nnoremap("<leader>wc", "<cmd>close<CR>")
+
 nnoremap("<leader>.", "<cmd>Telescope find_files<cr>")
 nnoremap("<leader>ff", "<cmd>Telescope find_files<cr>")
 nnoremap("<leader>fr", "<cmd>Telescope oldfiles<cr>")
