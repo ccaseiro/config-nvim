@@ -44,4 +44,7 @@ return require('packer').startup(function(use)
             }
         end
     }
+
+    -- git
+    use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
 end)

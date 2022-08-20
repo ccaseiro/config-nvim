@@ -70,3 +70,10 @@ vim.keymap.set('!', '<C-w>', readline.unix_word_rubout)
 vim.keymap.set('!', '<C-k>', readline.kill_line)
 vim.keymap.set('!', '<C-u>', readline.dwim_backward_kill_line)
 
+
+-- git
+local neogit = require('neogit')
+neogit.setup {
+    disable_commit_confirmation = true
+}
+

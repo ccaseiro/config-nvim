@@ -5,6 +5,8 @@ nnoremap("<leader>bk", "<cmd>bd<CR>")
 
 nnoremap("<leader>fs", "<cmd>w<CR>")
 
+nnoremap("<leader>gg", "<cmd>Neogit<CR>")
+
 nnoremap("<leader>o-", "<cmd>Ex<CR>")
 
 nnoremap("<leader>qq", "<cmd>qa<CR>")
