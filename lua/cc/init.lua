@@ -104,6 +104,14 @@ require'nvim-treesitter.configs'.setup {
       additional_vim_regex_highlighting = false,
   }
 }
+vim.api.nvim_create_autocmd('BufRead', {
+   callback = function()
+      vim.api.nvim_create_autocmd('BufWinEnter', {
+         once = true,
+         command = 'normal! zx zi'
+      })
+   end
+})
 
 require("neotest").setup {
     adapters = {
