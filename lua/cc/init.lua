@@ -97,13 +97,18 @@ neogit.setup {
 -- treesitter
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "rust" },
+  ensure_installed = { "rust", "query" },
 
   highlight = {
       enable = true,
       additional_vim_regex_highlighting = false,
+  },
+
+  playground = {
+      enable = true,
   }
 }
+
 vim.api.nvim_create_autocmd('BufRead', {
    callback = function()
       vim.api.nvim_create_autocmd('BufWinEnter', {
@@ -113,6 +118,7 @@ vim.api.nvim_create_autocmd('BufRead', {
    end
 })
 
+-- test: neotest
 require("neotest").setup {
     adapters = {
         require "neotest-rust",
