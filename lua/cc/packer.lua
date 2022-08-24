@@ -61,6 +61,9 @@ return require('packer').startup(function(use)
         end
     }
 
+    -- Terminal
+    use "numToStr/FTerm.nvim"
+
     -- git
     use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
 end)

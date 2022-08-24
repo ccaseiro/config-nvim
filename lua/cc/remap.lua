@@ -1,4 +1,5 @@
 local nnoremap = require("cc.keymap").nnoremap
+local vnoremap = require("cc.keymap").vnoremap
 
 nnoremap("<leader>bd", "<cmd>bd<CR>")
 nnoremap("<leader>bk", "<cmd>bd<CR>")
@@ -23,3 +24,6 @@ nnoremap("<leader>ff", "<cmd>Telescope find_files<cr>")
 nnoremap("<leader>fr", "<cmd>Telescope oldfiles<cr>")
 nnoremap("<leader>bb", "<cmd>Telescope buffers<cr>")
 
+nnoremap("<leader>ot", "<cmd>lua require('FTerm').toggle()<cr>") -- toggle terminal
+
+vim.keymap.set('t', '<esc>', [[<C-\><C-n>]])
