@@ -118,6 +118,8 @@ vim.api.nvim_create_autocmd('BufRead', {
    end
 })
 
+require'treesitter-context'.setup{}
+
 -- test: neotest
 require("neotest").setup {
     adapters = {
