@@ -97,7 +97,7 @@ neogit.setup {
 -- treesitter
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "rust", "query" },
+  ensure_installed = { "rust", "query", "javascript", "lua" },
 
   highlight = {
       enable = true,
