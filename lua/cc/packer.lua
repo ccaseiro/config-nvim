@@ -1,111 +1,110 @@
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 
-vim.cmd([[
+vim.cmd(
+    [[
 augroup packer_user_config
 autocmd!
 autocmd BufWritePost packer.lua source <afile> | PackerCompile
 augroup end
-]])
+]]
+)
 
 -- packer.nvim configuration
 local conf = {
     profile = {
         enable = true,
-        threshold = 0, -- the amount in ms that a plugins load time must be over for it to be included in the profile
+        threshold = 0 -- the amount in ms that a plugins load time must be over for it to be included in the profile
     },
-
     display = {
         open_fn = function()
-            return require("packer.util").float { border = "rounded" }
-        end,
-    },
+            return require("packer.util").float {border = "rounded"}
+        end
+    }
 }
-
 
 local packer = require "packer"
 packer.init(conf)
-return packer.startup(function(use)
-    -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
-    use 'neovim/nvim-lspconfig'
+return packer.startup(
+    function(use)
+        -- Packer can manage itself
+        use "wbthomason/packer.nvim"
+        use "neovim/nvim-lspconfig"
 
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate'
-    }
-    use 'nvim-treesitter/playground'
-    use 'nvim-treesitter/nvim-treesitter-context'
-
-    use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.0',
-        -- or                            , branch = '0.1.x',
-        requires = { {'nvim-lua/plenary.nvim'} }
-    }
-
-    -- test
-    use {
-        "nvim-neotest/neotest",
-        requires = {
-            "nvim-lua/plenary.nvim",
+        use {
             "nvim-treesitter/nvim-treesitter",
-            "antoinemadec/FixCursorHold.nvim",
-            "rouge8/neotest-rust"
+            run = ":TSUpdate"
         }
-    }
+        use "nvim-treesitter/playground"
+        use "nvim-treesitter/nvim-treesitter-context"
 
-    -- cmp
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-cmdline'
-    use 'hrsh7th/nvim-cmp'
+        use {
+            "nvim-telescope/telescope.nvim",
+            tag = "0.1.0",
+            -- or                            , branch = '0.1.x',
+            requires = {{"nvim-lua/plenary.nvim"}}
+        }
 
-    -- Colorschemes
-    use 'folke/tokyonight.nvim'
-    use 'ellisonleao/gruvbox.nvim' 
-    use 'luisiacc/gruvbox-baby' 
-    use 'joshdick/onedark.vim'
-
-    use 'linty-org/readline.nvim'
-
-    use {
-        'numToStr/Comment.nvim',
-        config = function()
-            require('Comment').setup()
-        end
-    }
-
-    use {
-        "folke/which-key.nvim",
-        config = function()
-            require("which-key").setup {
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                -- refer to the configuration section below
+        -- test
+        use {
+            "nvim-neotest/neotest",
+            requires = {
+                "nvim-lua/plenary.nvim",
+                "nvim-treesitter/nvim-treesitter",
+                "antoinemadec/FixCursorHold.nvim",
+                "rouge8/neotest-rust"
             }
-        end
-    }
+        }
 
-    use({
-        "kylechui/nvim-surround",
-        config = function()
-            require("nvim-surround").setup({
-                -- Configuration here, or leave empty to use defaults
-            })
-        end
-    })
+        -- cmp
+        use "hrsh7th/cmp-nvim-lsp"
+        use "hrsh7th/cmp-buffer"
+        use "hrsh7th/cmp-path"
+        use "hrsh7th/cmp-cmdline"
+        use "hrsh7th/nvim-cmp"
 
-    -- Terminal
-    -- use { "numToStr/FTerm.nvim", cmd = 'FTerm' }
-    use { 
-        "numToStr/FTerm.nvim",
-        config = function()
-            vim.api.nvim_create_user_command('FTermToggle', require('FTerm').toggle, { bang = true })
-        end,
-        cmd = 'FTermToggle'
-    }
+        -- Colorschemes
+        use "folke/tokyonight.nvim"
+        use "ellisonleao/gruvbox.nvim"
+        use "luisiacc/gruvbox-baby"
+        use "joshdick/onedark.vim"
 
-    -- git
-    use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
-end)
+        use "linty-org/readline.nvim"
+
+        use {
+            "numToStr/Comment.nvim",
+            config = function()
+                require("Comment").setup()
+            end
+        }
+
+        use {
+            "folke/which-key.nvim",
+            config = function()
+                require("which-key").setup {}
+            end
+        }
+
+        use(
+            {
+                "kylechui/nvim-surround",
+                config = function()
+                    require("nvim-surround").setup({})
+                end
+            }
+        )
+
+        -- Terminal
+        -- use { "numToStr/FTerm.nvim", cmd = 'FTerm' }
+        use {
+            "numToStr/FTerm.nvim",
+            config = function()
+                vim.api.nvim_create_user_command("FTermToggle", require("FTerm").toggle, {bang = true})
+            end,
+            cmd = "FTermToggle"
+        }
+
+        -- git
+        use {"TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim"}
+    end
+)
