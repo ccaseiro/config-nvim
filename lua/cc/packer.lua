@@ -1,7 +1,31 @@
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 
-return require('packer').startup(function(use)
+vim.cmd([[
+augroup packer_user_config
+autocmd!
+autocmd BufWritePost packer.lua source <afile> | PackerCompile
+augroup end
+]])
+
+-- packer.nvim configuration
+local conf = {
+    profile = {
+        enable = true,
+        threshold = 0, -- the amount in ms that a plugins load time must be over for it to be included in the profile
+    },
+
+    display = {
+        open_fn = function()
+            return require("packer.util").float { border = "rounded" }
+        end,
+    },
+}
+
+
+local packer = require "packer"
+packer.init(conf)
+return packer.startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
     use 'neovim/nvim-lspconfig'
