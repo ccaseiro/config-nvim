@@ -4,6 +4,7 @@ local vnoremap = require("cc.keymap").vnoremap
 nnoremap("<leader>bd", "<cmd>bd<CR>")
 nnoremap("<leader>bk", "<cmd>bd<CR>")
 
+nnoremap("<leader>cr", vim.lsp.buf.rename)
 nnoremap("<leader>fs", "<cmd>w<CR>")
 
 nnoremap("<leader>gg", "<cmd>Neogit<CR>")
