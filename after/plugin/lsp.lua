@@ -3,8 +3,11 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
 end
 
-require'lspconfig'.rust_analyzer.setup{
+lspconfig = require('lspconfig')
+
+lspconfig.rust_analyzer.setup{
     on_attach = on_attach
 }
-require'lspconfig'.taplo.setup{} -- toml
+lspconfig.taplo.setup{} -- toml
 
+lspconfig.tsserver.setup{}
