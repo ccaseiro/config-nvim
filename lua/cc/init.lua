@@ -39,11 +39,11 @@ cmp.setup {
         end, {'i', 's'}),
 
     }),
+
     sources = { 
         { name = 'path' }, -- add "keyword_length = 2" to set numbers of chars to begin query
         { name = 'nvim_lsp' },
         { name = 'buffer' }, 
-        { name = 'cmdline' },
     },
 
     completion = { completeopt = "menu,menuone,noinsert", keyword_length = 1 },
@@ -63,7 +63,24 @@ cmp.setup {
             return item
         end,
     },
+
 }
+
+cmp.setup.cmdline(":", {
+    sources = cmp.config.sources({
+        { name = "path", max_item_count = 5 },
+        { name = "cmdline", max_item_count = 15 },
+    }),
+})
+
+-- lsp_document_symbols
+cmp.setup.cmdline("/", {
+    sources = cmp.config.sources({
+        { name = "nvim_lsp_document_symbol", max_item_count = 8, keyword_length = 3 },
+        { name = "buffer", max_item_count = 5, keyword_length = 5 },
+    }),
+})
+
 
 local readline = require('readline')
 vim.keymap.set('!', '<M-f>', readline.forward_word)
