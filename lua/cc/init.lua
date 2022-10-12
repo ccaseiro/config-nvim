@@ -45,6 +45,9 @@ cmp.setup {
         { name = 'buffer' }, 
         { name = 'cmdline' },
     },
+
+    completion = { completeopt = "menu,menuone,noinsert", keyword_length = 1 },
+
     formatting = {
         fields = {'menu', 'abbr', 'kind'},
         format = function(entry, item)
