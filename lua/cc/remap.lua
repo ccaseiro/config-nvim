@@ -42,6 +42,16 @@ nnoremap("<leader>fr", "<cmd>Telescope oldfiles<cr>")
 nnoremap("<leader>bb", "<cmd>Telescope buffers<cr>")
 
 -- nnoremap("<leader>ot", "<cmd>lua require('FTerm').toggle()<cr>") -- toggle terminal
-nnoremap("<leader>ot", "<cmd>FTermToggle<cr>") -- toggle terminal
+-- nnoremap("<leader>ot", "<cmd>FTermToggle<cr>") -- toggle terminal
+vim.api.nvim_set_keymap("n", "<leader>ot", "<cmd>ToggleTerm<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>of", "<cmd>ToggleTerm direction=float<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>os", "<cmd>ToggleTerm direction=horizontal<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>ov", "<cmd>ToggleTerm direction=vertical<CR>", {noremap = true, silent = true})
+
+vim.api.nvim_set_keymap("n", "<leader>oon", "<cmd>lua _NCDU_TOGGLE()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>ool", "<cmd>lua _LAZZYGIT_TOGGLE()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>oon", "<cmd>lua _NODE_TOGGLE()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>oop", "<cmd>lua _PYTHON_TOGGLE()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>ooh", "<cmd>lua _HTOP_TOGGLE()<CR>", {noremap = true, silent = true})
 
 vim.keymap.set('t', '<esc>', [[<C-\><C-n>]])
