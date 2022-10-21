@@ -73,6 +73,12 @@ function(use)
     use "hrsh7th/cmp-cmdline"
     use "hrsh7th/nvim-cmp"
 
+    -- editing
+    use {
+        "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup {} end
+    }
+
     -- Colorschemes
     use "folke/tokyonight.nvim"
     use "ellisonleao/gruvbox.nvim"
