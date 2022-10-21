@@ -8,6 +8,7 @@ nnoremap("<leader>cr", vim.lsp.buf.rename)
 nnoremap("K", vim.lsp.buf.hover)
 
 nnoremap("<leader>fs", "<cmd>w<CR>")
+nnoremap("<leader>fb", "<cmd>Telescope file_browser<CR>")
 
 nnoremap("<leader>gg", "<cmd>Neogit<CR>")
 
