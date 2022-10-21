@@ -33,106 +33,110 @@ function(use)
     use 'tpope/vim-unimpaired'
     use 'justinmk/vim-sneak'
     -- use {
-    --     'ggandor/leap.nvim',
-    --     config = function()
-    --         require('leap').add_default_mappings()
-    --     end
-    -- }
+        --     'ggandor/leap.nvim',
+        --     config = function()
+            --         require('leap').add_default_mappings()
+            --     end
+            -- }
 
-    use "neovim/nvim-lspconfig"
+            use "neovim/nvim-lspconfig"
 
-    use {
-        "nvim-treesitter/nvim-treesitter",
-        run = ":TSUpdate"
-    }
-    use "nvim-treesitter/playground"
-    use "nvim-treesitter/nvim-treesitter-context"
+            use {
+                "nvim-treesitter/nvim-treesitter",
+                run = ":TSUpdate"
+            }
+            use "nvim-treesitter/playground"
+            use "nvim-treesitter/nvim-treesitter-context"
 
-    use {
-        "nvim-telescope/telescope.nvim",
-        tag = "0.1.0",
-        -- or                            , branch = '0.1.x',
-        requires = {{"nvim-lua/plenary.nvim"}}
-    }
+            use {
+                "nvim-telescope/telescope.nvim",
+                tag = "0.1.0",
+                -- or                            , branch = '0.1.x',
+                requires = {
+                    {"nvim-lua/plenary.nvim"},
+                    -- { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+                    { "natecraddock/telescope-zf-native.nvim"}
+                }
+            }
 
-    -- test
-    use {
-        "nvim-neotest/neotest",
-        requires = {
-            "nvim-lua/plenary.nvim",
-            "nvim-treesitter/nvim-treesitter",
-            "antoinemadec/FixCursorHold.nvim",
-            "rouge8/neotest-rust"
-        }
-    }
+            -- test
+            use {
+                "nvim-neotest/neotest",
+                    requires = {
+                        "nvim-lua/plenary.nvim",
+                        "nvim-treesitter/nvim-treesitter",
+                        "antoinemadec/FixCursorHold.nvim",
+                        "rouge8/neotest-rust"
+                    }
+                }
 
-    -- cmp
-    use "hrsh7th/cmp-nvim-lsp"
-    use "hrsh7th/cmp-buffer"
-    use "hrsh7th/cmp-path"
-    use "hrsh7th/cmp-cmdline"
-    use "hrsh7th/nvim-cmp"
+                -- cmp
+                use "hrsh7th/cmp-nvim-lsp"
+                use "hrsh7th/cmp-buffer"
+                use "hrsh7th/cmp-path"
+                use "hrsh7th/cmp-cmdline"
+                use "hrsh7th/nvim-cmp"
 
-    -- editing
-    use {
-        "windwp/nvim-autopairs",
-        config = function() require("nvim-autopairs").setup {} end
-    }
+                -- editing
+                use {
+                    "windwp/nvim-autopairs",
+                    config = function() require("nvim-autopairs").setup {} end
+                }
 
-    -- Colorschemes
-    use "folke/tokyonight.nvim"
-    use "ellisonleao/gruvbox.nvim"
-    use "luisiacc/gruvbox-baby"
-    use "joshdick/onedark.vim"
+                -- Colorschemes
+                use "folke/tokyonight.nvim"
+                use "ellisonleao/gruvbox.nvim"
+                use "luisiacc/gruvbox-baby"
+                use "joshdick/onedark.vim"
 
-    use {
-        "nvim-lualine/lualine.nvim",
-        -- requires = {"kyazdani42/nvim-web-devicons", opt = true},
-        requires = {"kyazdani42/nvim-web-devicons"},
-        config = function()
-            require("lualine").setup()
-        end
-    }
+                use {
+                    "nvim-lualine/lualine.nvim",
+                    -- requires = {"kyazdani42/nvim-web-devicons", opt = true},
+                    requires = {"kyazdani42/nvim-web-devicons"},
+                    config = function()
+                        require("lualine").setup()
+                    end
+                }
 
-    use "linty-org/readline.nvim"
+                use "linty-org/readline.nvim"
 
-    use {
-        "numToStr/Comment.nvim",
-        config = function()
-            require("Comment").setup()
-        end
-    }
+                use {
+                    "numToStr/Comment.nvim",
+                    config = function()
+                        require("Comment").setup()
+                    end
+                }
 
-    use {
-        "folke/which-key.nvim",
-        config = function()
-            require("which-key").setup {}
-        end
-    }
+                use {
+                    "folke/which-key.nvim",
+                    config = function()
+                        require("which-key").setup {}
+                    end
+                }
 
-    use(
-    {
-        "kylechui/nvim-surround",
-        config = function()
-            require("nvim-surround").setup({})
-        end
-    }
-    )
+                use(
+                {
+                    "kylechui/nvim-surround",
+                    config = function()
+                        require("nvim-surround").setup({})
+                    end
+                }
+                )
 
-    -- Terminal
-    -- use { "numToStr/FTerm.nvim", cmd = 'FTerm' }
-    -- use {
-    --     "numToStr/FTerm.nvim",
-    --     config = function()
-    --         vim.api.nvim_create_user_command("FTermToggle", require("FTerm").toggle, {bang = true})
-    --     end,
-    --     cmd = "FTermToggle"
-    -- }
-    use {"akinsho/toggleterm.nvim", tag = '*', config = function()
-        require("cc/toggleterm")
-    end}
+                -- Terminal
+                -- use { "numToStr/FTerm.nvim", cmd = 'FTerm' }
+                -- use {
+                    --     "numToStr/FTerm.nvim",
+                    --     config = function()
+                        --         vim.api.nvim_create_user_command("FTermToggle", require("FTerm").toggle, {bang = true})
+                        --     end,
+                        --     cmd = "FTermToggle"
+                        -- }
+                        use {"akinsho/toggleterm.nvim", tag = '*', config = function()
+                            require("cc/toggleterm")
+                        end}
 
-    -- git
-    use {"TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim"}
-end
-)
+                        -- git
+                        use {"TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim"}
+                    end
+                    )
