@@ -19,6 +19,8 @@ nnoremap("<leader>mtt", "<cmd>lua require('neotest').run.run()<cr>")
 
 nnoremap("<leader>o-", "<cmd>Ex<CR>")
 
+nnoremap("<leader>pp", "<cmd>Telescope project<CR>")
+
 nnoremap("<leader>qq", "<cmd>qa<CR>")
 
 nnoremap("<leader>wc", "<C-w>c")

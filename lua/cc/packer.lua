@@ -56,7 +56,8 @@ function(use)
                     {"nvim-lua/plenary.nvim"},
                     -- { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
                     { "natecraddock/telescope-zf-native.nvim"},
-                    { "nvim-telescope/telescope-file-browser.nvim" }
+                    { "nvim-telescope/telescope-file-browser.nvim" },
+                    { "nvim-telescope/telescope-project.nvim" }
                 }
             }
 
