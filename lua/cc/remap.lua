@@ -1,6 +1,8 @@
 local nnoremap = require("cc.keymap").nnoremap
 local vnoremap = require("cc.keymap").vnoremap
 
+nnoremap("<leader>/", "<cmd>Telescope live_grep<CR>")
+
 nnoremap("<leader>bd", "<cmd>bd<CR>")
 nnoremap("<leader>bk", "<cmd>bd<CR>")
 
