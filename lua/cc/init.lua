@@ -2,6 +2,7 @@ require("cc.set")
 require("cc.packer")
 require("cc.remap")
 require("cc.telescope")
+require("cc.treesitter")
 
 vim.api.nvim_create_autocmd({"BufWritePre"}, {command = "lua vim.lsp.buf.format()", })
 -- vim.api.nvim_create_autocmd({"BufWritePre"}, {pattern = "*.rs", command = "lua vim.lsp.buf.format()", })
@@ -113,21 +114,6 @@ autocmd('TextYankPost', {
 local neogit = require('neogit')
 neogit.setup {
     disable_commit_confirmation = true
-}
-
--- treesitter
-require'nvim-treesitter.configs'.setup {
-  -- A list of parser names, or "all"
-  ensure_installed = { "rust", "query", "javascript", "lua" },
-
-  highlight = {
-      enable = true,
-      additional_vim_regex_highlighting = false,
-  },
-
-  playground = {
-      enable = true,
-  }
 }
 
 vim.api.nvim_create_autocmd('BufRead', {
