@@ -1,5 +1,7 @@
 local nnoremap = require("cc.keymap").nnoremap
 local vnoremap = require("cc.keymap").vnoremap
+local wk = require("which-key")
+
 
 nnoremap("<leader>/", "<cmd>Telescope live_grep<CR>")
 
@@ -9,15 +11,22 @@ nnoremap("<leader>bk", "<cmd>bd<CR>")
 nnoremap("<leader>cr", vim.lsp.buf.rename)
 nnoremap("K", vim.lsp.buf.hover)
 
-nnoremap("<leader>fs", "<cmd>w<CR>")
-nnoremap("<leader>fb", "<cmd>Telescope file_browser<CR>")
+wk.register({["<leader>f"] = {name = "+file"}})
+wk.register({["<leader>fs"] = {"<cmd>w<CR>", "Save file"}})
+wk.register({["<leader>fb"] = {"<cmd>Telescope file_browser<CR>", "File browser"}})
 
 nnoremap("<leader>gg", "<cmd>Neogit<CR>")
 
-nnoremap("<leader>mtf", "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>")
-nnoremap("<leader>mto", "<cmd>lua require('neotest').output.open({ enter = true })<cr>")
-nnoremap("<leader>mts", "<cmd>lua require('neotest').summary.toggle()<cr>")
-nnoremap("<leader>mtt", "<cmd>lua require('neotest').run.run()<cr>")
+wk.register({["<leader>m"] = {name = "+localleader"}})
+
+wk.register({["<leader>mt"] = {name = "+test"}})
+wk.register({["<leader>mta"] = {"<cmd>lua require('neotest').run.attach()<cr>", "attach to nearest test"}})
+wk.register({["<leader>mtd"] = {"<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", "debug nearest test"}})
+wk.register({["<leader>mtf"] = {"<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", "run current file"}})
+wk.register({["<leader>mto"] = {"<cmd>lua require('neotest').output.open({ enter = true })<cr>", "toggle output"}})
+wk.register({["<leader>mts"] = {"<cmd>lua require('neotest').summary.toggle()<cr>", "toggle summary"}})
+wk.register({["<leader>mtS"] = {"<cmd>lua require('neotest').run.stop()<cr>", "stop nearest test"}})
+wk.register({["<leader>mtt"] = {"<cmd>lua require('neotest').run.run()<cr>", "run nearest test"}})
 
 nnoremap("<leader>o-", "<cmd>Ex<CR>")
 
