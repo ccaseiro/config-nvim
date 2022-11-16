@@ -52,6 +52,8 @@ return packer.startup(function(use)
     --     end
     -- }
 
+    use({"L3MON4D3/LuaSnip"})
+
     use {
         "neovim/nvim-lspconfig", 
         wants = {"null-ls"},
