@@ -32,6 +32,10 @@ lspconfig.tsserver.setup{
 --     sources = nls_sources
 -- }
 
+lspconfig.terraformls.setup{
+    on_attach = on_attach
+}
+
 require("null-ls").setup({
   sources = {
     require("null-ls").builtins.formatting.shfmt,
@@ -39,5 +43,4 @@ require("null-ls").setup({
   },
   debug = true
 })
-
 
