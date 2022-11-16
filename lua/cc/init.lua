@@ -145,6 +145,7 @@ require'treesitter-context'.setup{}
 require("neotest").setup {
     adapters = {
         require "neotest-rust",
+        require "neotest-jest",
     },
 }
 
