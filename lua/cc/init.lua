@@ -116,14 +116,14 @@ neogit.setup {
     disable_commit_confirmation = true
 }
 
-vim.api.nvim_create_autocmd('BufRead', {
-   callback = function()
-      vim.api.nvim_create_autocmd('BufWinEnter', {
-         once = true,
-         command = 'normal! zx zi'
-      })
-   end
-})
+-- vim.api.nvim_create_autocmd('BufRead', {
+--    callback = function()
+--       vim.api.nvim_create_autocmd('BufWinEnter', {
+--          once = true,
+--          command = 'normal! zx zi'
+--       })
+--    end
+-- })
 
 require'treesitter-context'.setup{}
 
@@ -135,3 +135,5 @@ require("neotest").setup {
     },
 }
 
+-- fold: ufo
+require('ufo').setup{}

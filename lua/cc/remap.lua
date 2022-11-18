@@ -72,3 +72,7 @@ vim.api.nvim_set_keymap("n", "<leader>oop", "<cmd>lua _PYTHON_TOGGLE()<CR>", {no
 vim.api.nvim_set_keymap("n", "<leader>ooh", "<cmd>lua _HTOP_TOGGLE()<CR>", {noremap = true, silent = true})
 
 vim.keymap.set('t', '<esc>', [[<C-\><C-n>]])
+
+-- fold: ufo
+wk.register({["zR"] = {"<cmd>lua require('ufo').openAllFolds()<cr>", "Open all folds"}})
+wk.register({["zM"] = {"<cmd>lua require('ufo').closeAllFolds()<cr>", "Close all folds"}})

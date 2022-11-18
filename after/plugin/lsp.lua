@@ -10,6 +10,8 @@ end
 
 lspconfig = require('lspconfig')
 
+local servers = {'rust_analyzer', 'taplo', 'tsserver', 'terraformls'}
+
 lspconfig.rust_analyzer.setup{
     on_attach = on_attach
 }
@@ -44,3 +46,19 @@ require("null-ls").setup({
   debug = true
 })
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+}
+
+for _, ls in ipairs(servers) do
+    require('lspconfig')[ls].setup({
+        capabilities = capabilities,
+        -- other_fields = ...
+    })
+end
+
+
+
+require('ufo').setup()

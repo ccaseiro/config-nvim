@@ -165,5 +165,6 @@ return packer.startup(function(use)
         require('packer').sync()
     end
 
+    use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
 end
 )
