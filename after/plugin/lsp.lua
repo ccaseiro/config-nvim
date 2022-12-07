@@ -3,7 +3,7 @@ local nnoremap = require("cc.keymap").nnoremap
 local on_attach = function(client, bufnr)
     local bufopts = { noremap=true, silent=true, buffer=bufnr }
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-    -- vim.keymap.set('n', 'gd', vim.lsp.buf.references, bufopts)
+
     nnoremap("gd", "<cmd>Telescope lsp_definitions<cr>")
     nnoremap("gD", "<cmd>Telescope lsp_references<cr>")
 end
@@ -56,6 +56,7 @@ for _, ls in ipairs(servers) do
     require('lspconfig')[ls].setup({
         capabilities = capabilities,
         -- other_fields = ...
+        on_attach = on_attach
     })
 end
 
