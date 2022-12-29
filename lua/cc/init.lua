@@ -3,6 +3,7 @@ require("cc.packer")
 require("cc.remap")
 require("cc.telescope")
 require("cc.treesitter")
+require("cc.luasnip")
 
 vim.api.nvim_create_autocmd({"BufWritePre"}, {command = "lua vim.lsp.buf.format()", })
 -- vim.api.nvim_create_autocmd({"BufWritePre"}, {pattern = "*.rs", command = "lua vim.lsp.buf.format()", })
@@ -43,6 +44,7 @@ cmp.setup {
     }),
 
     sources = { 
+        { name = 'luasnip'},
         { name = 'path' }, -- add "keyword_length = 2" to set numbers of chars to begin query
         { name = 'nvim_lsp' },
         { name = 'buffer' }, 
