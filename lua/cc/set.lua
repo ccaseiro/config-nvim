@@ -20,3 +20,4 @@ vim.o.foldenable = true
 -- vim.opt.clipboard = "unnamed,unnamedplus"
 vim.opt.clipboard = "unnamedplus"
 
+vim.o.cursorline = true
