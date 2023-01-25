@@ -83,6 +83,7 @@ return packer.startup(function(use)
     -- test
     use {
         "nvim-neotest/neotest",
+        tag = "v2.2.0",
         requires = {
             "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",
