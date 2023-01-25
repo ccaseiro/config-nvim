@@ -115,7 +115,8 @@ autocmd('TextYankPost', {
 -- git
 local neogit = require('neogit')
 neogit.setup {
-    disable_commit_confirmation = true
+    disable_commit_confirmation = true,
+    -- use_magit_keybindings = true
 }
 
 -- vim.api.nvim_create_autocmd('BufRead', {
