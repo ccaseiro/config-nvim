@@ -10,7 +10,7 @@ end
 
 lspconfig = require('lspconfig')
 
-local servers = {'rust_analyzer', 'taplo', 'tsserver', 'terraformls'}
+local servers = {'gopls', 'rust_analyzer', 'taplo', 'tsserver', 'terraformls'}
 
 lspconfig.rust_analyzer.setup{
     on_attach = on_attach

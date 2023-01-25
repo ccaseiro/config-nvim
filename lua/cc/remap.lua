@@ -5,11 +5,32 @@ local wk = require("which-key")
 
 nnoremap("<leader>/", "<cmd>Telescope live_grep<CR>")
 
-nnoremap("<leader>bd", "<cmd>bd<CR>")
-nnoremap("<leader>bk", "<cmd>bd<CR>")
+nnoremap("<leader>bd", "<cmd>bp | sp | bn | bd<CR>")
+nnoremap("<leader>bk", "<cmd>bp | sp | bn | bd<CR>")
+-- nnoremap("<leader>bk", "<cmd>bd<CR>")
 
-nnoremap("<leader>cr", vim.lsp.buf.rename)
+nnoremap("<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>")
+vnoremap("<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>")
+-- wk.register({["<leader>ca"] = {"<cmd>lua vim.lsp.buf.code_action()<cr>", "code action"}})
+wk.register({["<leader>cr"] = {"<cmd>lua vim.lsp.buf.rename()<cr>", "rename"}})
+wk.register({["<leader>cd"] = {"<cmd>lua vim.diagnostic.open_float()<cr>", "line diagnostics"}})
+wk.register({["<leader>cs"] = {"<cmd>Telescope lsp_document_symbols<cr>", "document symbols"}})
+wk.register({["<leader>ci"] = {"<cmd>Telescope lsp_incoming_calls<cr>", "incoming calls"}})
+wk.register({["<leader>co"] = {"<cmd>Telescope lsp_outgoing_calls<cr>", "outgoing calls"}})
+wk.register({["<leader>cI"] = {"<cmd>LspInfo<cr>", "lsp info"}})
+
+wk.register({["<leader>cwl"] = {"<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", "workspace list"}})
+wk.register({["<leader>cwa"] = {"<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", "workspace add"}})
+wk.register({["<leader>cwr"] = {"<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", "workspace remove"}})
+
 nnoremap("K", vim.lsp.buf.hover)
+nnoremap("<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>")
+
+nnoremap("[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
+nnoremap("]d", "<cmd>lua vim.diagnostic.goto_next()<CR>")
+nnoremap("[e", "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>")
+nnoremap("]e", "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>")
+
 
 wk.register({["<leader>f"] = {name = "+file"}})
 wk.register({["<leader>fs"] = {"<cmd>w<CR>", "Save file"}})
@@ -24,6 +45,7 @@ wk.register({["<leader>mta"] = {"<cmd>lua require('neotest').run.attach()<cr>", 
 wk.register({["<leader>mtd"] = {"<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", "debug nearest test"}})
 wk.register({["<leader>mtf"] = {"<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", "run current file"}})
 wk.register({["<leader>mto"] = {"<cmd>lua require('neotest').output.open({ enter = true })<cr>", "toggle output"}})
+wk.register({["<leader>mtO"] = {"<cmd>lua require('neotest').output_panel.toggle()<cr>", "toggle output panel"}})
 wk.register({["<leader>mts"] = {"<cmd>lua require('neotest').summary.toggle()<cr>", "toggle summary"}})
 wk.register({["<leader>mtS"] = {"<cmd>lua require('neotest').run.stop()<cr>", "stop nearest test"}})
 wk.register({["<leader>mtt"] = {"<cmd>lua require('neotest').run.run()<cr>", "run nearest test"}})
@@ -49,6 +71,16 @@ nnoremap("<leader>wn", "1<C-w>w")
 nnoremap("<leader>we", "2<C-w>w")
 nnoremap("<leader>wi", "3<C-w>w")
 nnoremap("<leader>wy", "4<C-w>w")
+-- Rotate
+nnoremap("<leader>wr", "<C-w>r")
+nnoremap("<leader>wx", "<C-w>x")
+nnoremap("<leader>wR", "<C-w>R")
+nnoremap("<leader>wH", "<C-w>H")
+nnoremap("<leader>wJ", "<C-w>J")
+nnoremap("<leader>wK", "<C-w>K")
+nnoremap("<leader>wL", "<C-w>L")
+nnoremap("<leader>wfh", "-2<C-w>x")
+nnoremap("<leader>wfl", "2<C-w>x")
 
 nnoremap("<leader>.", "<cmd>Telescope find_files<cr>")
 nnoremap("<leader>ff", "<cmd>Telescope find_files<cr>")
@@ -76,3 +108,7 @@ vim.keymap.set('t', '<esc>', [[<C-\><C-n>]])
 -- fold: ufo
 wk.register({["zR"] = {"<cmd>lua require('ufo').openAllFolds()<cr>", "Open all folds"}})
 wk.register({["zM"] = {"<cmd>lua require('ufo').closeAllFolds()<cr>", "Close all folds"}})
+
+-- Paste over currently selected text without yanking it
+vim.keymap.set("v", "p", '"_dP')
+
