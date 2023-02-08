@@ -13,7 +13,8 @@ nnoremap("<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>")
 vnoremap("<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>")
 -- wk.register({["<leader>ca"] = {"<cmd>lua vim.lsp.buf.code_action()<cr>", "code action"}})
 wk.register({["<leader>cr"] = {"<cmd>lua vim.lsp.buf.rename()<cr>", "rename"}})
-wk.register({["<leader>cd"] = {"<cmd>lua vim.diagnostic.open_float()<cr>", "line diagnostics"}})
+wk.register({["<leader>cD"] = {"<cmd>lua vim.diagnostic.open_float()<cr>", "line diagnostics"}})
+wk.register({["<leader>cd"] = {"<cmd>Telescope diagnostics<cr>", "diagnostics"}})
 wk.register({["<leader>cs"] = {"<cmd>Telescope lsp_document_symbols<cr>", "document symbols"}})
 wk.register({["<leader>ci"] = {"<cmd>Telescope lsp_incoming_calls<cr>", "incoming calls"}})
 wk.register({["<leader>co"] = {"<cmd>Telescope lsp_outgoing_calls<cr>", "outgoing calls"}})
@@ -31,12 +32,28 @@ nnoremap("]d", "<cmd>lua vim.diagnostic.goto_next()<CR>")
 nnoremap("[e", "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>")
 nnoremap("]e", "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>")
 
+nnoremap("<leader>bb", "<cmd>Telescope buffers<cr>")
+nnoremap("<leader>gg", "<cmd>Neogit<CR>")
 
 wk.register({["<leader>f"] = {name = "+file"}})
 wk.register({["<leader>fs"] = {"<cmd>w<CR>", "Save file"}})
 wk.register({["<leader>fb"] = {"<cmd>Telescope file_browser<CR>", "File browser"}})
+wk.register({["<leader>fd"] = {"<cmd>Telescope file_browser path=%:p:h<CR>", "Find directory"}})
+wk.register({["<leader>."] = {"<cmd>Telescope file_browser path=%:p:h<CR>", "File find"}})
+wk.register({["<leader>ff"] = {"<cmd>Telescope file_browser path=%:p:h<CR>", "File browser"}})
+wk.register({["<leader>fF"] = {"<cmd>Telescope find_files cwd=%:p:h<cr>", "File browser"}})
+wk.register({["<leader>fg"] = {"<cmd>Telescope git_files<cr>", "File browser"}})
+wk.register({["<leader>fr"] = {"<cmd>Telescope oldfiles<cr>", "Recent files"}})
+wk.register({["<leader><leader>"] = {"<cmd>Telescope find_files<cr>", "File find"}})
 
-nnoremap("<leader>gg", "<cmd>Neogit<CR>")
+
+wk.register({["<leader>hb"] = {":Gitsigns blame_line<cr>", "blame line"}})
+wk.register({["<leader>hp"] = {":Gitsigns preview_hunk<cr>", "previw hunk"}})
+wk.register({["<leader>hP"] = {":Gitsigns preview_hunk_inline<cr>", "previw hunk inline"}})
+wk.register({["<leader>hr"] = {":Gitsigns reset_hunk<cr>", "reset hunk"}}, {mode={"n", "v"}})
+wk.register({["<leader>hs"] = {":Gitsigns stage_hunk<cr>", "stage hunk"}}, {mode={"n", "v"}})
+wk.register({["<leader>hx"] = {":Gitsigns reset_hunk<cr>", "reset hunk"}}, {mode={"n", "v"}})
+wk.register({["<leader>tb"] = {":Gitsigns toggle_current_line_blame<cr>", "toggle blame"}})
 
 wk.register({["<leader>m"] = {name = "+localleader"}})
 
@@ -84,26 +101,30 @@ nnoremap("<leader>wL", "<C-w>L")
 nnoremap("<leader>wfh", "-2<C-w>x")
 nnoremap("<leader>wfl", "2<C-w>x")
 
-nnoremap("<leader>.", "<cmd>Telescope find_files<cr>")
-nnoremap("<leader>ff", "<cmd>Telescope find_files<cr>")
-nnoremap("<leader>fr", "<cmd>Telescope oldfiles<cr>")
-nnoremap("<leader>bb", "<cmd>Telescope buffers<cr>")
-
 -- nnoremap("<leader>ot", "<cmd>lua require('FTerm').toggle()<cr>") -- toggle terminal
 -- nnoremap("<leader>ot", "<cmd>FTermToggle<cr>") -- toggle terminal
-vim.api.nvim_set_keymap("n", "<leader>ot", "<cmd>ToggleTerm<CR>", {noremap = true, silent = true})
+
+-- wk.register({["<C-n>"] = {"<cmd>ToggleTermToggleAll<CR>", "ToggleTermToggleAll"}}, {mode={"n", "t"}})
+
+vim.api.nvim_set_keymap("n", "<leader>ot", "<cmd>ToggleTermToggleAll<CR>", {noremap = true, silent = true })
+wk.register({["<C-y>"] = {"<cmd>ToggleTermToggleAll<CR>", "ToggleTermToggleAll"}}, {mode={"n", "t"}})
+
 vim.api.nvim_set_keymap("n", "<leader>of", "<cmd>ToggleTerm direction=float<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>os", "<cmd>ToggleTerm direction=horizontal<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>ov", "<cmd>ToggleTerm direction=vertical<CR>", {noremap = true, silent = true})
 
 vim.api.nvim_set_keymap("n", "<leader>oo1", "<cmd>ToggleTerm 1<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>oo2", "<cmd>ToggleTerm 2<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>oo3", "<cmd>ToggleTerm 3<CR>", {noremap = true, silent = true})
 
-vim.api.nvim_set_keymap("n", "<leader>oon", "<cmd>lua _NCDU_TOGGLE()<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<leader>ool", "<cmd>lua _LAZZYGIT_TOGGLE()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>ooe", "<cmd>ToggleTermSendVisualSelection<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>ool", "<cmd>ToggleTermSendCurrentLine<CR>", {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap("n", "<leader>oon", "<cmd>lua _NCDU_TOGGLE()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>oog", "<cmd>lua _LAZZYGIT_TOGGLE()<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>oon", "<cmd>lua _NODE_TOGGLE()<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>oop", "<cmd>lua _PYTHON_TOGGLE()<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>ooh", "<cmd>lua _HTOP_TOGGLE()<CR>", {noremap = true, silent = true})
+
 
 vim.keymap.set('t', '<esc>', [[<C-\><C-n>]])
 

@@ -3,6 +3,7 @@ local nnoremap = require("cc.keymap").nnoremap
 local on_attach = function(client, bufnr)
     local bufopts = { noremap=true, silent=true, buffer=bufnr }
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+    vim.keymap.set('i', '<C-k>', vim.lsp.buf.hover, bufopts)
 
     nnoremap("gd", "<cmd>Telescope lsp_definitions<cr>")
     nnoremap("gD", "<cmd>Telescope lsp_references<cr>")
