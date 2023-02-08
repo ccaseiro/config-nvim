@@ -52,7 +52,9 @@ wk.register({["<leader>mtt"] = {"<cmd>lua require('neotest').run.run()<cr>", "ru
 
 nnoremap("<leader>o-", "<cmd>Ex<CR>")
 
-nnoremap("<leader>pp", "<cmd>Telescope project<CR>")
+-- project
+nnoremap("<leader>pp", "<cmd>lua require'telescope'.extensions.projects.projects{}<CR>")
+nnoremap("<leader>pP", "<cmd>Telescope project<CR>")
 
 nnoremap("<leader>qq", "<cmd>qa<CR>")
 
