@@ -1,4 +1,7 @@
 telescope = require('telescope')
+local fb_actions = require "telescope".extensions.file_browser.actions
+
+telescope.load_extension('file_browser')
 telescope.setup {
     defaults = {
         file_ignore_patterns = {"node_modules"},
@@ -10,6 +13,17 @@ telescope.setup {
         --         ["<C-h>"] = "which_key"
         --     }
         -- }
+    },
+    extensions = {
+        file_browser ={
+            mappings = {
+                ["i"] = {
+                    -- ["<C-c>"] = fb_actions.create,
+                    ["<C-x>"] = fb_actions.create,
+                }
+            }
+
+        }
     }
 }
 
