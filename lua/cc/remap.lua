@@ -141,3 +141,6 @@ tnoremap("<C-k>", [[<C-\><C-n><C-w>k]])
 tnoremap("<C-j>", [[<C-\><C-n><C-w>j]])
 nnoremap("<C-k>", [[<C-w>k]])
 nnoremap("<C-j>", [[<C-w>j]])
+
+wk.register({["<leader>x"] = {"<cmd>Telescope attempt<cr>", "List Scratch buffers"}})
+wk.register({["<leader>bx"] = {"<cmd>lua require('attempt').new_select()<cr>", "New Scratch buffers"}})

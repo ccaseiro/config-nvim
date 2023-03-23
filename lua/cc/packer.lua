@@ -78,7 +78,8 @@ return packer.startup(function(use)
             -- { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
             { "natecraddock/telescope-zf-native.nvim"},
             { "nvim-telescope/telescope-file-browser.nvim" },
-            { "nvim-telescope/telescope-project.nvim" }
+            { "nvim-telescope/telescope-project.nvim" },
+            {'nvim-telescope/telescope-ui-select.nvim' }
         }
     }
 
@@ -235,5 +236,14 @@ return packer.startup(function(use)
     end
 
     use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
+
+    use {
+        'm-demare/attempt.nvim',
+        requires = 'nvim-lua/plenary.nvim',
+        config = function()
+            require('attempt').setup()
+        end
+    }
+
 end
 )
