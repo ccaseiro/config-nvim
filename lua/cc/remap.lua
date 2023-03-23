@@ -1,4 +1,5 @@
 local nnoremap = require("cc.keymap").nnoremap
+local tnoremap = require("cc.keymap").tnoremap
 local vnoremap = require("cc.keymap").vnoremap
 local wk = require("which-key")
 
@@ -135,3 +136,8 @@ wk.register({["zM"] = {"<cmd>lua require('ufo').closeAllFolds()<cr>", "Close all
 -- Paste over currently selected text without yanking it
 vim.keymap.set("v", "p", '"_dP')
 
+-- terminal
+tnoremap("<C-k>", [[<C-\><C-n><C-w>k]])
+tnoremap("<C-j>", [[<C-\><C-n><C-w>j]])
+nnoremap("<C-k>", [[<C-w>k]])
+nnoremap("<C-j>", [[<C-w>j]])
