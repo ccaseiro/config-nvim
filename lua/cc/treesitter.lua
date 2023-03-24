@@ -1,7 +1,7 @@
 -- treesitter
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "rust", "query", "javascript", "lua", "hcl", "yaml" },
+  ensure_installed = { "rust", "query", "javascript", "lua", "hcl", "yaml", "terraform" },
 
   highlight = {
       enable = true,
