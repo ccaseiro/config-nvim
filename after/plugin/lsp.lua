@@ -1,4 +1,5 @@
 local nnoremap = require("cc.keymap").nnoremap
+local nls = require "null-ls"
 
 local on_attach = function(client, bufnr)
     local bufopts = { noremap=true, silent=true, buffer=bufnr }
@@ -39,11 +40,15 @@ lspconfig.terraformls.setup{
     on_attach = on_attach
 }
 
-require("null-ls").setup({
-  sources = {
+local sources = {
     require("null-ls").builtins.formatting.shfmt,
-    require("null-ls").builtins.formatting.prettier
-  },
+    require("null-ls").builtins.formatting.prettier,
+    -- require("null-ls").builtins.diagnostics.jshint,
+    require("null-ls").builtins.diagnostics.eslint_d,
+}
+require("null-ls").setup({
+  sources = sources,
+  on_attach = on_attach,
   debug = true
 })
 
