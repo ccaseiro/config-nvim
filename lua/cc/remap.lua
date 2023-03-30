@@ -168,3 +168,8 @@ map("n", "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { desc = 
 map("n", "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", {desc = "Switch Buffer" })
 map("n", "<leader>:", "<cmd>Telescope command_history<cr>", {desc = "Command History" })
 
+-- neotree
+map("n", "<leader>e", function() require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() }) end, {desc = "Explorer NeoTree (cwd)" })
+map("n", "<leader>fe", function() require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() }) end, {desc = "Explorer NeoTree (cwd)" })
+map("n", "<leader>fE", function() require("neo-tree.command").execute({ toggle = true, dir = vim.loop.os_homedir() }) end, {desc = "Explorer NeoTree (cwd)" })
+
