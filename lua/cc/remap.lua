@@ -1,8 +1,9 @@
 local nnoremap = require("cc.keymap").nnoremap
 local tnoremap = require("cc.keymap").tnoremap
 local vnoremap = require("cc.keymap").vnoremap
-local wk = require("which-key")
+local map = require("cc.keymap").map
 
+local wk = require("which-key")
 
 nnoremap("<leader>/", "<cmd>Telescope live_grep<CR>")
 
@@ -37,7 +38,7 @@ nnoremap("<leader>bb", "<cmd>Telescope buffers<cr>")
 nnoremap("<leader>gg", "<cmd>Neogit<CR>")
 
 wk.register({["<leader>f"] = {name = "+file"}})
-wk.register({["<leader>fs"] = {"<cmd>w<CR>", "Save file"}})
+-- wk.register({["<leader>fs"] = {"<cmd>w<CR>", "Save file"}})
 wk.register({["<leader>fb"] = {"<cmd>Telescope file_browser<CR>", "File browser"}})
 wk.register({["<leader>fd"] = {"<cmd>Telescope file_browser path=%:p:h<CR>", "Find directory"}})
 wk.register({["<leader>."] = {"<cmd>Telescope file_browser path=%:p:h<CR>", "File find"}})
@@ -76,9 +77,9 @@ nnoremap("<leader>pP", "<cmd>Telescope project<CR>")
 
 nnoremap("<leader>qq", "<cmd>qa<CR>")
 
-nnoremap("<leader>wc", "<C-w>c")
-nnoremap("<leader>ws", "<cmd>split<CR>")
-nnoremap("<leader>wv", "<cmd>vsplit<CR>")
+-- nnoremap("<leader>wc", "<C-w>c")
+-- nnoremap("<leader>ws", "<cmd>split<CR>")
+-- nnoremap("<leader>wv", "<cmd>vsplit<CR>")
 nnoremap("<leader>ww", "<C-w>w")
 nnoremap("<leader>wl", "<C-w>l")
 nnoremap("<leader>wh", "<C-w>h")
@@ -144,3 +145,26 @@ nnoremap("<C-j>", [[<C-w>j]])
 
 wk.register({["<leader>x"] = {"<cmd>Telescope attempt<cr>", "List Scratch buffers"}})
 wk.register({["<leader>bx"] = {"<cmd>lua require('attempt').new_select()<cr>", "New Scratch buffers"}})
+
+--------------------------------------------------------------------------------
+
+-- save file
+map({ "n" }, "<leader>fs", "<cmd>w<cr><esc>", { desc = "Save file" })
+
+-- yank all buffer
+map({ "n" }, "<leader>by", "<cmd>%y+<cr>", { desc = "Yank Buffer" })
+map({ "n" }, "<leader>bv", "ggVG", { desc = "Select Buffer" })
+
+-- windows
+map("n", "<leader>wc", "<C-W>c", { desc = "Delete window" })
+map("n", "<leader>ws", "<C-W>s", { desc = "Split window below" })
+map("n", "<leader>wv", "<C-W>v", { desc = "Split window right" })
+
+-- seaarch
+map("n", "<leader>ss", "<cmd>Telescope lsp_document_symbols<cr>", { desc = "Goto Symbol" })
+map("n", "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { desc = "Buffer" })
+
+-- telescope
+map("n", "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", {desc = "Switch Buffer" })
+map("n", "<leader>:", "<cmd>Telescope command_history<cr>", {desc = "Command History" })
+

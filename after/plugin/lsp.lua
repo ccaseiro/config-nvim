@@ -1,4 +1,5 @@
 local nnoremap = require("cc.keymap").nnoremap
+local map = require("cc.keymap").map
 local nls = require "null-ls"
 
 local on_attach = function(client, bufnr)
@@ -8,6 +9,7 @@ local on_attach = function(client, bufnr)
 
     nnoremap("gd", "<cmd>Telescope lsp_definitions<cr>")
     nnoremap("gD", "<cmd>Telescope lsp_references<cr>")
+    map("n", "gr", "<cmd>Telescope lsp_references<cr>", { desc = "References" })
 end
 
 lspconfig = require('lspconfig')
