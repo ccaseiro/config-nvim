@@ -28,11 +28,11 @@ vim.keymap.set({ "i", "s"}, "<c-j>", function()
         ls.expand_or_jump()
     end
 end)
-vim.keymap.set({ "i", "s"}, "<A-j>", function()
-    if ls.expand_or_jumpable() then
-        ls.expand_or_jump()
-    end
-end)
+-- vim.keymap.set({ "i", "s"}, "<A-j>", function()
+--     if ls.expand_or_jumpable() then
+--         ls.expand_or_jump()
+--     end
+-- end)
 
 
 vim.keymap.set({ "i", "s"}, "<c-k>", function()
@@ -40,11 +40,11 @@ vim.keymap.set({ "i", "s"}, "<c-k>", function()
         ls.jump(-1)
     end
 end)
-vim.keymap.set({ "i", "s"}, "<A-k>", function()
-    if ls.jumpable(-1) then
-        ls.jump(-1)
-    end
-end)
+-- vim.keymap.set({ "i", "s"}, "<A-k>", function()
+--     if ls.jumpable(-1) then
+--         ls.jump(-1)
+--     end
+-- end)
 
 
 vim.keymap.set({ "i", "s"}, "<c-l>", function()
@@ -52,22 +52,22 @@ vim.keymap.set({ "i", "s"}, "<c-l>", function()
         ls.change_choice(1)
     end
 end)
-vim.keymap.set({ "i", "s"}, "<A-l>", function()
-    if ls.choice_active() then
-        ls.change_choice(1)
-    end
-end)
-
-
+-- vim.keymap.set({ "i", "s"}, "<A-l>", function()
+--     if ls.choice_active() then
+--         ls.change_choice(1)
+--     end
+-- end)
+--
+--
 vim.keymap.set({ "i", "s"}, "<c-h>", function()
     if ls.choice_active() then
         ls.change_choice(-1)
     end
 end)
-vim.keymap.set({ "i", "s"}, "<A-h>", function()
-    if ls.choice_active() then
-        ls.change_choice(-1)
-    end
-end)
-
-
+-- vim.keymap.set({ "i", "s"}, "<A-h>", function()
+--     if ls.choice_active() then
+--         ls.change_choice(-1)
+--     end
+-- end)
+--
+--
