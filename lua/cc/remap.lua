@@ -2,6 +2,7 @@ local nnoremap = require("cc.keymap").nnoremap
 local tnoremap = require("cc.keymap").tnoremap
 local vnoremap = require("cc.keymap").vnoremap
 local map = require("cc.keymap").map
+local Util = require("cc.util")
 
 local wk = require("which-key")
 
@@ -155,6 +156,7 @@ map({ "n" }, "<leader>fs", "<cmd>w<cr><esc>", { desc = "Save file" })
 map({ "n" }, "<leader>by", "<cmd>%y+<cr>", { desc = "Yank Buffer" })
 map({ "n" }, "<leader>bv", "ggVG", { desc = "Select Buffer" })
 
+
 -- windows
 map("n", "<leader>wc", "<C-W>c", { desc = "Delete window" })
 map("n", "<leader>ws", "<C-W>s", { desc = "Split window below" })
@@ -165,11 +167,28 @@ map("n", "<leader>ss", "<cmd>Telescope lsp_document_symbols<cr>", { desc = "Goto
 map("n", "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { desc = "Buffer" })
 
 -- telescope
+map("n", "<leader>'", "<cmd>Telescope resume<cr>", { desc = "Resume" })
+
 map("n", "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", {desc = "Switch Buffer" })
 map("n", "<leader>:", "<cmd>Telescope command_history<cr>", {desc = "Command History" })
+map("n", "<leader>sh", "<cmd>Telescope help_tags<cr>", {desc = "Help Pages" })
+map("n", "<leader>sk", "<cmd>Telescope keymaps<cr>", {desc = "Key Maps" })
+map("n", "<leader>sM", "<cmd>Telescope man_pages<cr>", {desc = "Man Pages" })
+map("n", "<leader>sm", "<cmd>Telescope marks<cr>", {desc = "Jump to Mark" })
+map("n", "<leader>so", "<cmd>Telescope vim_options<cr>", {desc = "Options" })
+map("n", "<leader>sR", "<cmd>Telescope resume<cr>", {desc = "Resume" })
+
 
 -- neotree
 map("n", "<leader>e", function() require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() }) end, {desc = "Explorer NeoTree (cwd)" })
 map("n", "<leader>fe", function() require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() }) end, {desc = "Explorer NeoTree (cwd)" })
 map("n", "<leader>fE", function() require("neo-tree.command").execute({ toggle = true, dir = vim.loop.os_homedir() }) end, {desc = "Explorer NeoTree (cwd)" })
 
+-- Resize window using <ctrl> arrow keys
+map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
+map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+
+-- floating terminal
+map("n", "<leader>ft", function() Util.float_term(nil, { cwd = Util.get_root() }) end, { desc = "Terminal (root dir)" })
