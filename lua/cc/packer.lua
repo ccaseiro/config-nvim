@@ -167,7 +167,7 @@ return packer.startup(function(use)
     --     end,
     --     cmd = "FTermToggle"
     -- }
-    use {"akinsho/toggleterm.nvim", tag = '*', config = function()
+    use {"akinsho/toggleterm.nvim", config = function()
         require("cc/toggleterm")
     end}
 
