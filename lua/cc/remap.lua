@@ -38,7 +38,6 @@ nnoremap("]e", "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.sev
 nnoremap("<leader>bb", "<cmd>Telescope buffers<cr>")
 nnoremap("<leader>gg", "<cmd>Neogit<CR>")
 
-wk.register({ ["<leader>f"] = { name = "+file" } })
 -- wk.register({["<leader>fs"] = {"<cmd>w<CR>", "Save file"}})
 wk.register({ ["<leader>fb"] = { "<cmd>Telescope file_browser<CR>", "File browser" } })
 wk.register({ ["<leader>fd"] = { "<cmd>Telescope file_browser path=%:p:h<CR>", "Find directory" } })
