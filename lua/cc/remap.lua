@@ -204,3 +204,6 @@ map("n", "<leader>cm", "<cmd>Mason<cr>", { desc = "Mason" })
 
 -- Lazy
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
+
+-- Alpha / Dashboard
+map("n", "<leader>bh", "<cmd>Alpha<cr>", { desc = "Dashboard" })
