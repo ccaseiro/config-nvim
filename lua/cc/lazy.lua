@@ -15,6 +15,8 @@ vim.g.mapleader = " "
 
 local plugins = {
     "tpope/vim-unimpaired",
+    -- makes some plugins dot-repeatable like leap
+    { "tpope/vim-repeat", event = "VeryLazy" },
     {
         "kylechui/nvim-surround",
         config = function()
@@ -23,6 +25,7 @@ local plugins = {
     },
     {
         "ggandor/leap.nvim",
+        dependencies = "tpope/vim-repeat",
         keys = {
             { "s", mode = { "n", "x", "o" }, desc = "Leap forward to" },
             { "S", mode = { "n", "x", "o" }, desc = "Leap backward to" },
