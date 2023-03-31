@@ -201,3 +201,6 @@ map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window w
 
 -- Mason
 map("n", "<leader>cm", "<cmd>Mason<cr>", { desc = "Mason" })
+
+-- Lazy
+map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
