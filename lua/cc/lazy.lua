@@ -43,6 +43,19 @@ local plugins = {
         end,
     },
 
+    {
+        "williamboman/mason.nvim",
+        build = ":MasonUpdate", -- :MasonUpdate updates registry contents
+        config = function()
+            require("mason").setup()
+        end,
+    },
+    {
+        "williamboman/mason-lspconfig.nvim",
+        config = function()
+            require("mason-lspconfig").setup()
+        end,
+    },
     { "neovim/nvim-lspconfig", dependencies = { "jose-elias-alvarez/null-ls.nvim" } },
     { "kevinhwang91/nvim-ufo", dependencies = "kevinhwang91/promise-async" },
     {

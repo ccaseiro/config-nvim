@@ -43,10 +43,11 @@ lspconfig.terraformls.setup{
 }
 
 local sources = {
-    require("null-ls").builtins.formatting.shfmt,
-    require("null-ls").builtins.formatting.prettier,
-    -- require("null-ls").builtins.diagnostics.jshint,
-    require("null-ls").builtins.diagnostics.eslint_d,
+    nls.builtins.formatting.shfmt,
+    nls.builtins.formatting.prettier,
+    -- nls.builtins.diagnostics.jshint,
+    nls.builtins.diagnostics.eslint_d,
+    nls.builtins.formatting.stylua,
 }
 require("null-ls").setup({
   sources = sources,
