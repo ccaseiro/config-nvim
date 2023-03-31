@@ -2,8 +2,6 @@ local nnoremap = require("cc.keymap").nnoremap
 local tnoremap = require("cc.keymap").tnoremap
 local vnoremap = require("cc.keymap").vnoremap
 local map = require("cc.keymap").map
-local Util = require("cc.util")
-
 local wk = require("which-key")
 
 nnoremap("<leader>/", "<cmd>Telescope live_grep<CR>")
@@ -189,6 +187,3 @@ map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
 map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
 map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
 map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
-
--- floating terminal
-map("n", "<leader>ft", function() Util.float_term(nil, { cwd = Util.get_root() }) end, { desc = "Terminal (root dir)" })
