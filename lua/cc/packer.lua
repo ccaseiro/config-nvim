@@ -46,13 +46,13 @@ return packer.startup(function(use)
     use "wbthomason/packer.nvim"
 
     use 'tpope/vim-unimpaired'
-    use 'justinmk/vim-sneak'
-    -- use {
-    --     'ggandor/leap.nvim',
-    --     config = function()
-    --         require('leap').add_default_mappings()
-    --     end
-    -- }
+    -- use 'justinmk/vim-sneak'
+    use {
+        'ggandor/leap.nvim',
+        config = function()
+            require('leap').add_default_mappings()
+        end
+    }
 
     use({"L3MON4D3/LuaSnip"})
 
