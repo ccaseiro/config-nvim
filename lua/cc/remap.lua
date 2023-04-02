@@ -181,17 +181,6 @@ map("n", "<leader>sm", "<cmd>Telescope marks<cr>", { desc = "Jump to Mark" })
 map("n", "<leader>so", "<cmd>Telescope vim_options<cr>", { desc = "Options" })
 map("n", "<leader>sR", "<cmd>Telescope resume<cr>", { desc = "Resume" })
 
--- neotree
-map("n", "<leader>e", function()
-    require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
-end, { desc = "Explorer NeoTree (cwd)" })
-map("n", "<leader>fe", function()
-    require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
-end, { desc = "Explorer NeoTree (cwd)" })
-map("n", "<leader>fE", function()
-    require("neo-tree.command").execute({ toggle = true, dir = vim.loop.os_homedir() })
-end, { desc = "Explorer NeoTree (cwd)" })
-
 -- Resize window using <ctrl> arrow keys
 map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
 map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
