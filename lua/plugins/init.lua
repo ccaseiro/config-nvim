@@ -88,7 +88,7 @@ return {
             require("mason-lspconfig").setup()
         end,
     },
-    { "neovim/nvim-lspconfig", dependencies = { "jose-elias-alvarez/null-ls.nvim" } },
+    -- { "neovim/nvim-lspconfig", dependencies = { "jose-elias-alvarez/null-ls.nvim" } },
     { "kevinhwang91/nvim-ufo", dependencies = "kevinhwang91/promise-async" },
     {
         "numToStr/Comment.nvim",
@@ -144,19 +144,6 @@ return {
         config = function()
             require("cc.luasnip")
         end,
-    },
-
-    -- test
-    {
-        "nvim-neotest/neotest",
-        tag = "v2.2.0",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-treesitter/nvim-treesitter",
-            "antoinemadec/FixCursorHold.nvim",
-            "rouge8/neotest-rust",
-            "haydenmeade/neotest-jest",
-        },
     },
 
     -- cmp

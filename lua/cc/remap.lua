@@ -30,10 +30,10 @@ wk.register({ ["<leader>cwr"] = { "<cmd>lua vim.lsp.buf.remove_workspace_folder(
 nnoremap("K", vim.lsp.buf.hover)
 nnoremap("<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>")
 
-nnoremap("[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
-nnoremap("]d", "<cmd>lua vim.diagnostic.goto_next()<CR>")
-nnoremap("[e", "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>")
-nnoremap("]e", "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>")
+-- nnoremap("[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
+-- nnoremap("]d", "<cmd>lua vim.diagnostic.goto_next()<CR>")
+-- nnoremap("[e", "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>")
+-- nnoremap("]e", "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>")
 
 nnoremap("<leader>bb", "<cmd>Telescope buffers<cr>")
 nnoremap("<leader>gg", "<cmd>Neogit<CR>")
@@ -56,19 +56,9 @@ wk.register({ ["<leader>hs"] = { ":Gitsigns stage_hunk<cr>", "stage hunk" } }, {
 wk.register({ ["<leader>hx"] = { ":Gitsigns reset_hunk<cr>", "reset hunk" } }, { mode = { "n", "v" } })
 wk.register({ ["<leader>tb"] = { ":Gitsigns toggle_current_line_blame<cr>", "toggle blame" } })
 
-wk.register({ ["<leader>m"] = { name = "+localleader" } })
+-- wk.register({ ["<leader>m"] = { name = "+localleader" } })
 
 wk.register({ ["<leader>mt"] = { name = "+test" } })
-wk.register({ ["<leader>mta"] = { "<cmd>lua require('neotest').run.attach()<cr>", "attach to nearest test" } })
-wk.register({
-    ["<leader>mtd"] = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", "debug nearest test" },
-})
-wk.register({ ["<leader>mtf"] = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", "run current file" } })
-wk.register({ ["<leader>mto"] = { "<cmd>lua require('neotest').output.open({ enter = true })<cr>", "toggle output" } })
-wk.register({ ["<leader>mtO"] = { "<cmd>lua require('neotest').output_panel.toggle()<cr>", "toggle output panel" } })
-wk.register({ ["<leader>mts"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", "toggle summary" } })
-wk.register({ ["<leader>mtS"] = { "<cmd>lua require('neotest').run.stop()<cr>", "stop nearest test" } })
-wk.register({ ["<leader>mtt"] = { "<cmd>lua require('neotest').run.run()<cr>", "run nearest test" } })
 
 nnoremap("<leader>o-", "<cmd>Ex<CR>")
 

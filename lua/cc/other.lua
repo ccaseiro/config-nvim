@@ -124,13 +124,5 @@ neogit.setup({
 
 require("treesitter-context").setup({})
 
--- test: neotest
-require("neotest").setup({
-    adapters = {
-        require("neotest-rust"),
-        require("neotest-jest"),
-    },
-})
-
 -- fold: ufo
 require("ufo").setup({})

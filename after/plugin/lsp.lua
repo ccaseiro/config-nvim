@@ -1,74 +1,47 @@
 local nnoremap = require("cc.keymap").nnoremap
 local map = require("cc.keymap").map
-local nls = require "null-ls"
+local nls = require("null-ls")
 
 local on_attach = function(client, bufnr)
-    local bufopts = { noremap=true, silent=true, buffer=bufnr }
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-    vim.keymap.set('i', '<C-k>', vim.lsp.buf.hover, bufopts)
+    local bufopts = { noremap = true, silent = true, buffer = bufnr }
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+    vim.keymap.set("i", "<C-k>", vim.lsp.buf.hover, bufopts)
 
     nnoremap("gd", "<cmd>Telescope lsp_definitions<cr>")
     nnoremap("gD", "<cmd>Telescope lsp_references<cr>")
     map("n", "gr", "<cmd>Telescope lsp_references<cr>", { desc = "References" })
 end
 
-lspconfig = require('lspconfig')
+lspconfig = require("lspconfig")
 
-local servers = {'gopls', 'rust_analyzer', 'taplo', 'tsserver', 'terraformls'}
+local servers = { "gopls", "rust_analyzer", "taplo", "tsserver", "terraformls" }
 
-lspconfig.rust_analyzer.setup{
-    on_attach = on_attach
-}
-lspconfig.taplo.setup{} -- toml
+lspconfig.rust_analyzer.setup({
+    on_attach = on_attach,
+})
+lspconfig.taplo.setup({}) -- toml
 
-lspconfig.tsserver.setup{
+lspconfig.tsserver.setup({
     -- formatter = "prettier"
-    on_attach = on_attach
-}
+    on_attach = on_attach,
+})
 
--- local nls = require "null-ls"
--- local nls_b = nls.builtins
--- local nls_sources = {
---     nls_b.formatting.prettierd
---     -- nls_b.formatting.prettierd.with {
---     --     filetypes = { "html", "javascript", "json", "typescript", "yaml", "markdown" },
---     -- }
--- }
--- nls.setup {
---     sources = nls_sources
--- }
-
-lspconfig.terraformls.setup{
-    on_attach = on_attach
-}
-
-local sources = {
-    nls.builtins.formatting.shfmt,
-    nls.builtins.formatting.prettier,
-    -- nls.builtins.diagnostics.jshint,
-    nls.builtins.diagnostics.eslint_d,
-    nls.builtins.formatting.stylua,
-}
-require("null-ls").setup({
-  sources = sources,
-  on_attach = on_attach,
-  debug = true
+lspconfig.terraformls.setup({
+    on_attach = on_attach,
 })
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
-    lineFoldingOnly = true
+    lineFoldingOnly = true,
 }
 
 for _, ls in ipairs(servers) do
-    require('lspconfig')[ls].setup({
+    require("lspconfig")[ls].setup({
         capabilities = capabilities,
         -- other_fields = ...
-        on_attach = on_attach
+        on_attach = on_attach,
     })
 end
 
-
-
-require('ufo').setup()
+require("ufo").setup()
