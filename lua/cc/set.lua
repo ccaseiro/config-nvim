@@ -7,6 +7,7 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = " m"
 
 -- vim.opt.foldmethod = "expr"
 -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"

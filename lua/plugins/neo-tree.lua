@@ -8,21 +8,21 @@ return {
             function()
                 require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
             end,
-            { desc = "Explorer NeoTree (cwd)" },
+            desc = "Explorer NeoTree (cwd)",
         },
         {
             "<leader>fe",
             function()
                 require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
             end,
-            { desc = "Explorer NeoTree (cwd)" },
+            desc = "Explorer NeoTree (cwd)",
         },
         {
             "<leader>fE",
             function()
                 require("neo-tree.command").execute({ toggle = true, dir = vim.loop.os_homedir() })
             end,
-            { desc = "Explorer NeoTree (cwd)" },
+            desc = "Explorer NeoTree (cwd)",
         },
     },
 
