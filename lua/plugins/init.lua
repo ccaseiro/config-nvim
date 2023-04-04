@@ -123,14 +123,6 @@ return {
         end,
     },
     {
-        "nvim-treesitter/nvim-treesitter",
-        dependencies = "nvim-treesitter/nvim-treesitter-context",
-        build = ":TSUpdate",
-        config = function()
-            require("cc.treesitter")
-        end,
-    },
-    {
         "L3MON4D3/LuaSnip",
         config = function()
             require("cc.luasnip")
