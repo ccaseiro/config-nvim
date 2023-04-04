@@ -110,15 +110,6 @@ return {
             require("cc.telescope")
         end,
     },
-    -- project
-    {
-        "ahmedkhalf/project.nvim",
-        config = function()
-            require("project_nvim").setup({
-                patterns = { ".git/submodules" },
-            })
-        end,
-    },
 
     {
         "m-demare/attempt.nvim",
