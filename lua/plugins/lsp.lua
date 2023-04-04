@@ -55,8 +55,15 @@ return {
 
             lspconfig = require("lspconfig")
 
+            local on_new_config = function(_, config)
+                vim.env.VIRTUAL_ENV = "/Users/ccaseiro/Developer/Outscope/vap-st-connector/lambdas/.venv"
+                vim.env.PATH = "/Users/ccaseiro/Developer/Outscope/vap-st-connector/lambdas/.venv/bin:" .. vim.env.PATH
+                vim.env.PYTHONHOME = ""
+            end
+
             lspconfig.pyright.setup({
                 on_attach = on_attach,
+                on_new_config = on_new_config,
             })
         end,
     },
