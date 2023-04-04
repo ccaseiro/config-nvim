@@ -21,6 +21,7 @@ return {
                 -- nls.builtins.diagnostics.jshint,
                 nls.builtins.diagnostics.eslint_d,
                 nls.builtins.formatting.stylua,
+                nls.builtins.formatting.black,
             }
             nls.setup({
                 sources = sources,

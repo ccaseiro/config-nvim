@@ -1,10 +1,10 @@
-telescope = require('telescope')
-local fb_actions = require "telescope".extensions.file_browser.actions
+telescope = require("telescope")
+local fb_actions = require("telescope").extensions.file_browser.actions
 
-telescope.load_extension('file_browser')
-telescope.setup {
+telescope.load_extension("file_browser")
+telescope.setup({
     defaults = {
-        file_ignore_patterns = {"node_modules"},
+        file_ignore_patterns = { "node_modules" },
         -- mappings = {
         --     i = {
         --         -- map actions.which_key to <C-h> (default: <C-/>)
@@ -15,22 +15,21 @@ telescope.setup {
         -- }
     },
     extensions = {
-        file_browser ={
+        file_browser = {
             mappings = {
                 ["i"] = {
                     -- ["<C-c>"] = fb_actions.create,
                     ["<C-x>"] = fb_actions.create,
-                }
-            }
-
-        }
-    }
-}
+                    ["<C-d>"] = fb_actions.remove,
+                },
+            },
+        },
+    },
+})
 
 -- telescope.load_extension('fzf')
-telescope.load_extension('zf-native')
-telescope.load_extension('file_browser')
-telescope.load_extension('project')
-telescope.load_extension('attempt')
-telescope.load_extension('ui-select')
-
+telescope.load_extension("zf-native")
+telescope.load_extension("file_browser")
+telescope.load_extension("project")
+telescope.load_extension("attempt")
+telescope.load_extension("ui-select")
