@@ -63,7 +63,6 @@ wk.register({ ["<leader>mt"] = { name = "+test" } })
 nnoremap("<leader>o-", "<cmd>Ex<CR>")
 
 -- project
-nnoremap("<leader>pp", "<cmd>lua require'telescope'.extensions.projects.projects{}<CR>")
 nnoremap("<leader>pP", "<cmd>Telescope project<CR>")
 
 nnoremap("<leader>qq", "<cmd>qa<CR>")
