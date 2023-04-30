@@ -4,10 +4,10 @@ local vnoremap = require("cc.keymap").vnoremap
 local map = require("cc.keymap").map
 local wk = require("which-key")
 
-nnoremap("<leader>/", "<cmd>Telescope live_grep<CR>")
+map("n", "<leader>/", "<cmd>Telescope live_grep<CR>", { desc = "Search project" })
 
-nnoremap("<leader>bd", "<cmd>bp | sp | bn | bd<CR>")
-nnoremap("<leader>bk", "<cmd>bp | sp | bn | bd<CR>")
+-- nnoremap("<leader>bd", "<cmd>bp | sp | bn | bd<CR>")
+-- nnoremap("<leader>bk", "<cmd>bp | sp | bn | bd<CR>")
 -- nnoremap("<leader>bk", "<cmd>bd<CR>")
 
 nnoremap("<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>")
@@ -39,6 +39,7 @@ nnoremap("<leader>bb", "<cmd>Telescope buffers<cr>")
 nnoremap("<leader>gg", "<cmd>Neogit<CR>")
 
 -- wk.register({["<leader>fs"] = {"<cmd>w<CR>", "Save file"}})
+map("n", "<leader>f.", "<cmd>lcd %:p:h<cr>", { desc = "cwd to file's directory" })
 wk.register({ ["<leader>fb"] = { "<cmd>Telescope file_browser<CR>", "File browser" } })
 wk.register({ ["<leader>fd"] = { "<cmd>Telescope file_browser path=%:p:h<CR>", "Find directory" } })
 wk.register({ ["<leader>."] = { "<cmd>Telescope file_browser path=%:p:h<CR>", "File find" } })
@@ -75,7 +76,10 @@ nnoremap("<leader>wl", "<C-w>l")
 nnoremap("<leader>wh", "<C-w>h")
 nnoremap("<leader>wk", "<C-w>k")
 nnoremap("<leader>wj", "<C-w>j")
-nnoremap("<leader>wo", "<C-w>o")
+-- nnoremap("<leader>wm", "<C-w>o")
+map("n", "<leader>wm", "<C-w>| <C-w>_", { desc = "max width" })
+map("n", "<leader>wo", "<C-w>|", { desc = "max width" })
+map("n", "<leader>w_", "<C-w>_", { desc = "max height" })
 nnoremap("<leader>w=", "<C-w>=")
 -- Go to window 1,2,3,4
 nnoremap("<leader>wn", "1<C-w>w")
@@ -90,8 +94,8 @@ nnoremap("<leader>wH", "<C-w>H")
 nnoremap("<leader>wJ", "<C-w>J")
 nnoremap("<leader>wK", "<C-w>K")
 nnoremap("<leader>wL", "<C-w>L")
-nnoremap("<leader>wfh", "-2<C-w>x")
-nnoremap("<leader>wfl", "2<C-w>x")
+-- nnoremap("<leader>wfh", "-2<C-w>x")
+-- nnoremap("<leader>wfl", "2<C-w>x")
 
 -- nnoremap("<leader>ot", "<cmd>lua require('FTerm').toggle()<cr>") -- toggle terminal
 -- nnoremap("<leader>ot", "<cmd>FTermToggle<cr>") -- toggle terminal

@@ -40,6 +40,16 @@ return {
             require("mini.surround").setup(opts)
         end,
     },
+    {
+        "echasnovski/mini.bufremove",
+        -- stylua: ignore
+        keys = {
+            { "<leader>bd", function() require("mini.bufremove").delete(0, false) end, desc = "Delete Buffer" },
+            { "<leader>bk", function() require("mini.bufremove").delete(0, false) end, desc = "Delete Buffer" },
+            { "<leader>bD", function() require("mini.bufremove").delete(0, true) end, desc = "Delete Buffer (Force)" },
+            { "<leader>bK", function() require("mini.bufremove").delete(0, true) end, desc = "Delete Buffer (Force)" },
+        },
+    },
 
     {
         "ggandor/leap.nvim",
@@ -164,5 +174,58 @@ return {
             { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
             { "<leader>qd", function() require("persistence").stop() end, desc = "Don't Save Current Session" },
         },
+    },
+
+    {
+        "renerocksai/telekasten.nvim",
+        lazy = false,
+        dependencies = { "nvim-telescope/telescope.nvim" },
+        keys = {
+            {
+                "<leader>np",
+                "<cmd>Telekasten panel<cr>",
+                desc = "panel",
+            },
+            {
+                "<leader>nf",
+                "<cmd>Telekasten find_notes<cr>",
+                desc = "find notes",
+            },
+            {
+                "<leader>ng",
+                "<cmd>Telekasten search_notes<cr>",
+                desc = "search notes",
+            },
+            {
+                "<leader>nd",
+                "<cmd>Telekasten goto_today<cr>",
+                desc = "goto today",
+            },
+            {
+                "<leader>ni",
+                "<cmd>Telekasten follow_link<cr>",
+                desc = "follow link",
+            },
+            {
+                "<leader>nn",
+                "<cmd>Telekasten new_note<cr>",
+                desc = "new note",
+            },
+            {
+                "<leader>nt",
+                "<cmd>Telekasten toggle_todo<cr>",
+                desc = "toggle todo",
+            },
+            {
+                "<leader>nw",
+                "<cmd>Telekasten goto_thisweek<cr>",
+                desc = "goto this week",
+            },
+        },
+        config = function()
+            require("telekasten").setup({
+                home = vim.fn.expand("~/Documents/Notes"), -- Put the name of your notes directory here
+            })
+        end,
     },
 }

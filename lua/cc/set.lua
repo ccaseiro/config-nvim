@@ -27,3 +27,8 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 vim.o.undofile = true
+
+vim.o.winwidth = 10
+vim.o.winminwidth = 10
+vim.o.winheight = 5
+vim.o.winminheight = 5

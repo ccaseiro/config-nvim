@@ -2,13 +2,13 @@ return {
     {
         "nvim-neorg/neorg",
         cmd = "Neorg",
-        keys = {
-            {
-                "<leader>ni",
-                "<cmd>Neorg index<cr>",
-                desc = "index",
-            },
-        },
+        -- keys = {
+        --     {
+        --         "<leader>ni",
+        --         "<cmd>Neorg index<cr>",
+        --         desc = "index",
+        --     },
+        -- },
         build = ":Neorg sync-parsers",
         opts = {
             load = {

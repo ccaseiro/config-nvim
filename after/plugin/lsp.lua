@@ -1,6 +1,5 @@
 local nnoremap = require("cc.keymap").nnoremap
 local map = require("cc.keymap").map
-local nls = require("null-ls")
 
 local on_attach = function(client, bufnr)
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
