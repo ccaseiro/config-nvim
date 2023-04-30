@@ -1,5 +1,13 @@
 return {
     "nvim-telescope/telescope.nvim",
+    cmd = "Telescope",
+    keys = {
+        -- git
+        { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "commits" },
+        { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "status" },
+        -- search
+        { "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
+    },
     dependencies = {
         { "nvim-lua/plenary.nvim" },
         -- { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
