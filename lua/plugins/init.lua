@@ -98,7 +98,7 @@ return {
             require("mason-lspconfig").setup()
         end,
     },
-    -- { "neovim/nvim-lspconfig", dependencies = { "jose-elias-alvarez/null-ls.nvim" } },
+    -- TODO: remove?
     { "kevinhwang91/nvim-ufo", dependencies = "kevinhwang91/promise-async" },
     {
         "numToStr/Comment.nvim",
