@@ -165,8 +165,21 @@ return {
     {
         "renerocksai/telekasten.nvim",
         lazy = false,
-        dependencies = { "nvim-telescope/telescope.nvim" },
+        dependencies = {
+            "nvim-telescope/telescope.nvim",
+            "renerocksai/calendar-vim",
+        },
         keys = {
+            {
+                "<leader>nc",
+                "<cmd>Telekasten show_calendar<cr>",
+                desc = "show calendar",
+            },
+            {
+                "<leader>nC",
+                "<cmd>CalendarT<cr>",
+                desc = "calendar",
+            },
             {
                 "<leader>np",
                 "<cmd>Telekasten panel<cr>",
