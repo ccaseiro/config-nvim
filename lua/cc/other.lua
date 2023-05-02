@@ -66,12 +66,12 @@ cmp.setup({
     },
 })
 
-cmp.setup.cmdline(":", {
-    sources = cmp.config.sources({
-        { name = "path", max_item_count = 5 },
-        { name = "cmdline", max_item_count = 15 },
-    }),
-})
+-- cmp.setup.cmdline(":", {
+--     sources = cmp.config.sources({
+--         { name = "path", max_item_count = 5 },
+--         { name = "cmdline", max_item_count = 15 },
+--     }),
+-- })
 
 -- lsp_document_symbols
 cmp.setup.cmdline("/", {
