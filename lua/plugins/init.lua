@@ -222,9 +222,30 @@ return {
             },
         },
         config = function()
+            local home = vim.fn.expand("~/Documents/Notes") -- Put the name of your notes directory here
             require("telekasten").setup({
-                home = vim.fn.expand("~/Documents/Notes"), -- Put the name of your notes directory here
+                home = home,
+                -- dir names for special notes (absolute path or subdir name)
+                dailies = home .. "/" .. "daily",
+                weeklies = home .. "/" .. "weekly",
+                templates = home .. "/" .. "templates",
             })
         end,
+    },
+
+    {
+        "iamcco/markdown-preview.nvim",
+        build = "cd app && npm install",
+        init = function()
+            vim.g.mkdp_filetypes = { "markdown" }
+        end,
+        lazy = false,
+        keys = {
+            {
+                "<leader>no",
+                "<cmd>MarkdownPreviewToggle<cr>",
+                desc = "markdown preview",
+            },
+        },
     },
 }
