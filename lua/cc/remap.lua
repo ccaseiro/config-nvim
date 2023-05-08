@@ -55,7 +55,10 @@ wk.register({ ["<leader>hP"] = { ":Gitsigns preview_hunk_inline<cr>", "previw hu
 wk.register({ ["<leader>hr"] = { ":Gitsigns reset_hunk<cr>", "reset hunk" } }, { mode = { "n", "v" } })
 wk.register({ ["<leader>hs"] = { ":Gitsigns stage_hunk<cr>", "stage hunk" } }, { mode = { "n", "v" } })
 wk.register({ ["<leader>hx"] = { ":Gitsigns reset_hunk<cr>", "reset hunk" } }, { mode = { "n", "v" } })
-wk.register({ ["<leader>tb"] = { ":Gitsigns toggle_current_line_blame<cr>", "toggle blame" } })
+
+-- toggle options
+map("n", "<leader>tb", "<cmd>Gitsigns toggle_current_line_blame<cr>", { desc = "Toggle Git Blame" })
+map("n", "<leader>ts", require("cc.util").toggle, { desc = "Toggle format on Save" })
 
 -- wk.register({ ["<leader>m"] = { name = "+localleader" } })
 
@@ -188,3 +191,5 @@ map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
 -- new file
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
+
+map("n", "<C-l>", "<cmd>Noice dismiss<cr><cmd>noh<cr><C-l>", { desc = "New File" })

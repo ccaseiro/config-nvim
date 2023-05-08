@@ -1,4 +1,11 @@
-vim.api.nvim_create_autocmd({ "BufWritePre" }, { command = "lua vim.lsp.buf.format()" })
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+    -- command = "lua vim.lsp.buf.format()",
+    callback = function()
+        if require("cc.util").autoformat then
+            vim.lsp.buf.format()
+        end
+    end,
+})
 -- vim.api.nvim_create_autocmd({"BufWritePre"}, {pattern = "*.rs", command = "lua vim.lsp.buf.format()", })
 -- vim.api.nvim_create_autocmd("BufWritePre", { pattern="*.rs", callback = function() vim.lsp.buf.format() end })
 
