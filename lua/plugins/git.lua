@@ -30,7 +30,7 @@ return {
                             gs.next_hunk()
                         end)
                         return "<Ignore>"
-                    end, { expr = true })
+                    end, { expr = true, desc = "next hunk" })
 
                     map("n", "[c", function()
                         if vim.wo.diff then
@@ -40,7 +40,7 @@ return {
                             gs.prev_hunk()
                         end)
                         return "<Ignore>"
-                    end, { expr = true })
+                    end, { expr = true, desc = "prev hunk" })
 
                     -- Actions
                     -- map({'n', 'v'}, '<leader>hs', ':Gitsigns stage_hunk<CR>')
