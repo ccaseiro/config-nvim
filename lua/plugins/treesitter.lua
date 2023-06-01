@@ -15,6 +15,10 @@ return {
             playground = {
                 enable = true,
             },
+
+            matchup = {
+                enable = true,
+            },
         })
     end,
 }

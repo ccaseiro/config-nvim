@@ -50,7 +50,6 @@ return {
             { "<leader>bK", function() require("mini.bufremove").delete(0, true) end, desc = "Delete Buffer (Force)" },
         },
     },
-
     {
         "ggandor/leap.nvim",
         dependencies = "tpope/vim-repeat",
@@ -150,16 +149,56 @@ return {
     },
 
     -- session management
+    -- {
+    --     "folke/persistence.nvim",
+    --     event = "BufReadPre",
+    --     opts = { options = { "buffers", "curdir", "tabpages", "winsize", "help", "globals" } },
+    --     -- stylua: ignore
+    --     keys = {
+    --         { "<leader>qs", function() require("persistence").load() end, desc = "Restore Session" },
+    --         { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
+    --         { "<leader>qd", function() require("persistence").stop() end, desc = "Don't Save Current Session" },
+    --     },
+    -- },
     {
-        "folke/persistence.nvim",
-        event = "BufReadPre",
-        opts = { options = { "buffers", "curdir", "tabpages", "winsize", "help", "globals" } },
-        -- stylua: ignore
+        "echasnovski/mini.sessions",
+        lazy = false,
+        version = false,
         keys = {
-            { "<leader>qs", function() require("persistence").load() end, desc = "Restore Session" },
-            { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
-            { "<leader>qd", function() require("persistence").stop() end, desc = "Don't Save Current Session" },
+            {
+                "<leader>qs",
+                function()
+                    MiniSessions.select()
+                end,
+                desc = "Restore Session",
+            },
+            {
+                "<leader>ql",
+                function()
+                    MiniSessions.read()
+                end,
+                desc = "Restore Last Session",
+            },
+            {
+                "<leader>qw",
+                function()
+                    vim.ui.input({ prompt = "Name: " }, function(name)
+                        MiniSessions.write(name)
+                    end)
+                end,
+                desc = "Write Session",
+            },
+            {
+                "<leader>qd",
+                function()
+                    MiniSessions.config = { autowrite = false }
+                end,
+                desc = "Don't Save Current Session",
+            },
         },
+        config = function()
+            require("mini.sessions").setup()
+        end,
     },
 
     {
@@ -247,5 +286,30 @@ return {
                 desc = "markdown preview",
             },
         },
+    },
+
+    {
+        "MaximilianLloyd/lazy-reload.nvim",
+        opts = {
+            command_name = "ReloadPlugin",
+        },
+        keys = {
+            -- Opens the command.
+            { "<leader>hrp", "<cmd>lua require('lazy-reload').feed()<cr>", desc = "Reload a plugin" },
+        },
+    },
+
+    {
+        "mbbill/undotree",
+        lazy = false,
+        keys = {
+            { "<leader>tu", "<cmd>UndotreeToggle | UndotreeFocus<cr>", desc = "Toggle Undotree" },
+        },
+    },
+    {
+        "andymass/vim-matchup",
+        setup = function()
+            vim.g.matchup_matchparen_offscreen = { method = "popup" }
+        end,
     },
 }

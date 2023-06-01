@@ -13,7 +13,8 @@ end
 
 lspconfig = require("lspconfig")
 
-local servers = { "gopls", "rust_analyzer", "taplo", "tsserver", "terraformls" }
+-- local servers = { "gopls", "rust_analyzer", "taplo", "tsserver", "terraformls" }
+local servers = { "gopls", "rust_analyzer", "taplo", "terraformls" }
 
 lspconfig.rust_analyzer.setup({
     on_attach = on_attach,
@@ -22,7 +23,13 @@ lspconfig.taplo.setup({}) -- toml
 
 lspconfig.tsserver.setup({
     -- formatter = "prettier"
-    on_attach = on_attach,
+    -- on_attach = on_attach,
+    on_attach = function(client)
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+        -- on_attach(client)
+        -- client.resolved_capabilities.document_formatting = false
+    end,
 })
 
 lspconfig.terraformls.setup({

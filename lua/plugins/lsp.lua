@@ -6,7 +6,8 @@ local on_attach = function(client, bufnr)
     vim.keymap.set("i", "<C-k>", vim.lsp.buf.hover, bufopts)
 
     nnoremap("gd", "<cmd>Telescope lsp_definitions<cr>")
-    nnoremap("gD", "<cmd>Telescope lsp_references<cr>")
+    map("n", "gD", "<cmd>Telescope lsp_references show_line=false<cr>", { desc = "References (no line)" })
+    map("n", "gR", "<cmd>Telescope lsp_references fname_width=80<cr>", { desc = "References (width=100)" })
     map("n", "gr", "<cmd>Telescope lsp_references<cr>", { desc = "References" })
 end
 return {

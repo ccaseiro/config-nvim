@@ -1,5 +1,12 @@
 return {
-    { "TimUntersberger/neogit", dependencies = "nvim-lua/plenary.nvim" },
+    {
+        "TimUntersberger/neogit",
+        dependencies = "nvim-lua/plenary.nvim",
+        opts = {
+            disable_commit_confirmation = true,
+            -- use_magit_keybindings = true
+        },
+    },
     {
         "lewis6991/gitsigns.nvim",
         config = function()
@@ -45,20 +52,25 @@ return {
                     -- Actions
                     -- map({'n', 'v'}, '<leader>hs', ':Gitsigns stage_hunk<CR>')
                     -- map({'n', 'v'}, '<leader>hr', ':Gitsigns reset_hunk<CR>')
-                    map("n", "<leader>hS", gs.stage_buffer)
-                    map("n", "<leader>hu", gs.undo_stage_hunk)
-                    map("n", "<leader>hR", gs.reset_buffer)
-                    -- map('n', '<leader>hp', gs.preview_hunk)
-                    -- map('n', '<leader>hb', function() gs.blame_line{full=true} end)
-                    -- map('n', '<leader>tb', gs.toggle_current_line_blame)
-                    map("n", "<leader>hd", gs.diffthis)
-                    map("n", "<leader>hD", function()
+
+                    map("n", "<leader>ghS", gs.stage_buffer, { desc = "Stage hunk" })
+                    map("n", "<leader>ghu", gs.undo_stage_hunk, { desc = "Unstage Stage" })
+                    map("n", "<leader>ghR", gs.reset_buffer, { desc = "Reset Buffer" })
+                    map("n", "<leader>ghp", gs.preview_hunk, { desc = "Preview hunk" })
+                    map("n", "<leader>ghP", gs.preview_hunk_inline, { desc = "Preview hunk inline" })
+                    map("n", "<leader>ghb", function()
+                        gs.blame_line({ full = true })
+                    end, { desc = "Blame line" })
+                    map("n", "<leader>tb", gs.toggle_current_line_blame, { desc = "Toggle blame" })
+                    map("n", "<leader>ghB", gs.toggle_current_line_blame, { desc = "Toggle blame" })
+                    map("n", "<leader>ghd", gs.diffthis, { desc = "Diff" })
+                    map("n", "<leader>ghD", function()
                         gs.diffthis("~")
-                    end)
-                    map("n", "<leader>td", gs.toggle_deleted)
+                    end, { desc = "Diff ~" })
+                    map("n", "<leader>ghx", gs.toggle_deleted, { desc = "Toggle deleted" })
 
                     -- Text object
-                    map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
+                    map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Select hunk" })
                 end,
             })
         end,

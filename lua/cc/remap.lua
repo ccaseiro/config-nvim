@@ -47,14 +47,15 @@ wk.register({ ["<leader>ff"] = { "<cmd>Telescope file_browser path=%:p:h<CR>", "
 wk.register({ ["<leader>fF"] = { "<cmd>Telescope find_files cwd=%:p:h<cr>", "File browser" } })
 wk.register({ ["<leader>fg"] = { "<cmd>Telescope git_files<cr>", "File browser" } })
 wk.register({ ["<leader>fr"] = { "<cmd>Telescope oldfiles<cr>", "Recent files" } })
+wk.register({ ["<leader>fy"] = { '<cmd>let @+ = expand("%:p")<CR>', "Yank file path" } })
 wk.register({ ["<leader><leader>"] = { "<cmd>Telescope find_files<cr>", "File find" } })
 
-wk.register({ ["<leader>hb"] = { ":Gitsigns blame_line<cr>", "blame line" } })
-wk.register({ ["<leader>hp"] = { ":Gitsigns preview_hunk<cr>", "previw hunk" } })
-wk.register({ ["<leader>hP"] = { ":Gitsigns preview_hunk_inline<cr>", "previw hunk inline" } })
-wk.register({ ["<leader>hr"] = { ":Gitsigns reset_hunk<cr>", "reset hunk" } }, { mode = { "n", "v" } })
-wk.register({ ["<leader>hs"] = { ":Gitsigns stage_hunk<cr>", "stage hunk" } }, { mode = { "n", "v" } })
-wk.register({ ["<leader>hx"] = { ":Gitsigns reset_hunk<cr>", "reset hunk" } }, { mode = { "n", "v" } })
+-- wk.register({ ["<leader>ghb"] = { ":Gitsigns blame_line<cr>", "blame line" } })
+-- wk.register({ ["<leader>ghp"] = { ":Gitsigns preview_hunk<cr>", "previw hunk" } })
+-- wk.register({ ["<leader>ghP"] = { ":Gitsigns preview_hunk_inline<cr>", "previw hunk inline" } })
+-- wk.register({ ["<leader>ghr"] = { ":Gitsigns reset_hunk<cr>", "reset hunk" } }, { mode = { "n", "v" } })
+-- wk.register({ ["<leader>ghs"] = { ":Gitsigns stage_hunk<cr>", "stage hunk" } }, { mode = { "n", "v" } })
+-- wk.register({ ["<leader>ghx"] = { ":Gitsigns reset_hunk<cr>", "reset hunk" } }, { mode = { "n", "v" } })
 
 -- toggle options
 map("n", "<leader>tb", "<cmd>Gitsigns toggle_current_line_blame<cr>", { desc = "Toggle Git Blame" })
