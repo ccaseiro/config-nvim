@@ -142,8 +142,12 @@ vim.keymap.set("v", "p", '"_dP')
 -- terminal
 tnoremap("<C-k>", [[<C-\><C-n><C-w>k]])
 tnoremap("<C-j>", [[<C-\><C-n><C-w>j]])
+-- tnoremap("<C-l>", [[<C-\><C-n><C-w>l]])
+-- tnoremap("<C-h>", [[<C-\><C-n><C-w>h]])
 nnoremap("<C-k>", [[<C-w>k]])
 nnoremap("<C-j>", [[<C-w>j]])
+nnoremap("<C-l>", [[<C-w>l]])
+nnoremap("<C-h>", [[<C-w>h]])
 
 wk.register({ ["<leader>x"] = { "<cmd>Telescope attempt<cr>", "List Scratch buffers" } })
 wk.register({ ["<leader>bx"] = { "<cmd>lua require('attempt').new_select()<cr>", "New Scratch buffers" } })
@@ -193,4 +197,8 @@ map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 -- new file
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
-map("n", "<C-l>", "<cmd>Noice dismiss<cr><cmd>noh<cr><C-l>", { desc = "New File" })
+-- map("n", "<C-l>", "<cmd>Noice dismiss<cr><cmd>noh<cr><C-l>", { desc = "New File" })
+map("n", "<C-]>", "<cmd>Noice dismiss<cr><cmd>noh<cr><C-l>", { desc = "New File" })
+
+-- buffers
+map("n", "<leader>br", "<cmd>e!<cr>", { desc = "Revert Buffer" })
