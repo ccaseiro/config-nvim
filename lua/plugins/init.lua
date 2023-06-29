@@ -50,23 +50,67 @@ return {
             { "<leader>bK", function() require("mini.bufremove").delete(0, true) end, desc = "Delete Buffer (Force)" },
         },
     },
+    -- {
+    --     "ggandor/leap.nvim",
+    --     dependencies = "tpope/vim-repeat",
+    --     keys = {
+    --         { "s", mode = { "n", "x", "o" }, desc = "Leap forward to" },
+    --         { "S", mode = { "n", "x", "o" }, desc = "Leap backward to" },
+    --         { "gs", mode = { "n", "x", "o" }, desc = "Leap from windows" },
+    --     },
+    --     config = function(_, opts)
+    --         local leap = require("leap")
+    --         for k, v in pairs(opts) do
+    --             leap.opts[k] = v
+    --         end
+    --         leap.add_default_mappings(true)
+    --         vim.keymap.del({ "x", "o" }, "x")
+    --         vim.keymap.del({ "x", "o" }, "X")
+    --     end,
+    -- },
     {
-        "ggandor/leap.nvim",
-        dependencies = "tpope/vim-repeat",
+        "folke/flash.nvim",
+        event = "VeryLazy",
+        ---@type Flash.Config
+        opts = {},
         keys = {
-            { "s", mode = { "n", "x", "o" }, desc = "Leap forward to" },
-            { "S", mode = { "n", "x", "o" }, desc = "Leap backward to" },
-            { "gs", mode = { "n", "x", "o" }, desc = "Leap from windows" },
+            {
+                "s",
+                mode = { "n", "x", "o" },
+                function()
+                    -- default options: exact mode, multi window, all directions, with a backdrop
+                    require("flash").jump()
+                end,
+                desc = "Flash",
+            },
+            {
+                "S",
+                mode = { "n", "o", "x" },
+                function()
+                    -- show labeled treesitter nodes around the cursor
+                    require("flash").treesitter()
+                end,
+                desc = "Flash Treesitter",
+            },
+            {
+                "r",
+                mode = "o",
+                function()
+                    -- jump to a remote location to execute the operator
+                    require("flash").remote()
+                end,
+                desc = "Remote Flash",
+            },
+            {
+                "R",
+                mode = { "n", "o", "x" },
+                function()
+                    -- show labeled treesitter nodes around the search matches
+                    require("flash").treesitter_search()
+                end,
+                desc = "Treesitter Search",
+            },
         },
-        config = function(_, opts)
-            local leap = require("leap")
-            for k, v in pairs(opts) do
-                leap.opts[k] = v
-            end
-            leap.add_default_mappings(true)
-            vim.keymap.del({ "x", "o" }, "x")
-            vim.keymap.del({ "x", "o" }, "X")
-        end,
     },
 
     -- Colorschemes

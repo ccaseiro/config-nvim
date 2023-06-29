@@ -14,3 +14,12 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 
 require("lazy").setup("plugins")
+-- require("lazy").setup({
+--     spec = {
+--         { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+--         -- import any extras modules here
+--         { import = "lazyvim.plugins.extras.coding.yanky" },
+--         -- import/override with your plugins
+--         { import = "plugins" },
+--     },
+-- })

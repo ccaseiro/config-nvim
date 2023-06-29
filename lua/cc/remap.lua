@@ -4,7 +4,9 @@ local vnoremap = require("cc.keymap").vnoremap
 local map = require("cc.keymap").map
 local wk = require("which-key")
 
-map("n", "<leader>/", "<cmd>Telescope live_grep<CR>", { desc = "Search project" })
+-- map("n", "<leader>/", "<cmd>Telescope live_grep<CR>", { desc = "Search project" })
+-- map("n", "<leader>sd", "<cmd>Telescope live_grep cwd=%:p:h<CR>", { desc = "Search file cwd" })
+-- map("n", "<leader>sG", "<cmd>Telescope live_grep cwd=false<CR>", { desc = "Search cwd" })
 
 -- nnoremap("<leader>bd", "<cmd>bp | sp | bn | bd<CR>")
 -- nnoremap("<leader>bk", "<cmd>bp | sp | bn | bd<CR>")
@@ -68,7 +70,7 @@ wk.register({ ["<leader>mt"] = { name = "+test" } })
 nnoremap("<leader>o-", "<cmd>Ex<CR>")
 
 -- project
-nnoremap("<leader>pP", "<cmd>Telescope project<CR>")
+nnoremap("<leader>fP", "<cmd>Telescope project<CR>")
 
 nnoremap("<leader>qq", "<cmd>qa<CR>")
 
@@ -140,8 +142,8 @@ wk.register({ ["zM"] = { "<cmd>lua require('ufo').closeAllFolds()<cr>", "Close a
 vim.keymap.set("v", "p", '"_dP')
 
 -- terminal
-tnoremap("<C-k>", [[<C-\><C-n><C-w>k]])
-tnoremap("<C-j>", [[<C-\><C-n><C-w>j]])
+-- tnoremap("<C-k>", [[<C-\><C-n><C-w>k]])
+-- tnoremap("<C-j>", [[<C-\><C-n><C-w>j]])
 -- tnoremap("<C-l>", [[<C-\><C-n><C-w>l]])
 -- tnoremap("<C-h>", [[<C-\><C-n><C-w>h]])
 nnoremap("<C-k>", [[<C-w>k]])
@@ -168,19 +170,19 @@ map("n", "<leader>wv", "<C-W>v", { desc = "Split window right" })
 
 -- seaarch
 map("n", "<leader>ss", "<cmd>Telescope lsp_document_symbols<cr>", { desc = "Goto Symbol" })
-map("n", "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { desc = "Buffer" })
+-- map("n", "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { desc = "Buffer" })
 
 -- telescope
-map("n", "<leader>'", "<cmd>Telescope resume<cr>", { desc = "Resume" })
+-- map("n", "<leader>'", "<cmd>Telescope resume<cr>", { desc = "Resume" })
 
 map("n", "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", { desc = "Switch Buffer" })
 map("n", "<leader>:", "<cmd>Telescope command_history<cr>", { desc = "Command History" })
-map("n", "<leader>sh", "<cmd>Telescope help_tags<cr>", { desc = "Help Pages" })
-map("n", "<leader>sk", "<cmd>Telescope keymaps<cr>", { desc = "Key Maps" })
-map("n", "<leader>sM", "<cmd>Telescope man_pages<cr>", { desc = "Man Pages" })
-map("n", "<leader>sm", "<cmd>Telescope marks<cr>", { desc = "Jump to Mark" })
-map("n", "<leader>so", "<cmd>Telescope vim_options<cr>", { desc = "Options" })
-map("n", "<leader>sR", "<cmd>Telescope resume<cr>", { desc = "Resume" })
+-- map("n", "<leader>sh", "<cmd>Telescope help_tags<cr>", { desc = "Help Pages" })
+-- map("n", "<leader>sk", "<cmd>Telescope keymaps<cr>", { desc = "Key Maps" })
+-- map("n", "<leader>sM", "<cmd>Telescope man_pages<cr>", { desc = "Man Pages" })
+-- map("n", "<leader>sm", "<cmd>Telescope marks<cr>", { desc = "Jump to Mark" })
+-- map("n", "<leader>so", "<cmd>Telescope vim_options<cr>", { desc = "Options" })
+-- map("n", "<leader>sR", "<cmd>Telescope resume<cr>", { desc = "Resume" })
 
 -- Resize window using <ctrl> arrow keys
 map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
@@ -206,7 +208,35 @@ map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
 -- map("n", "<C-l>", "<cmd>Noice dismiss<cr><cmd>noh<cr><C-l>", { desc = "New File" })
-map("n", "<C-]>", "<cmd>Noice dismiss<cr><cmd>noh<cr><C-l>", { desc = "New File" })
+map("n", "<C-]>", "<cmd>Noice dismiss<cr><cmd>noh<cr><C-l>")
+-- map("n", "<C-]>", "<esc><cmd>Noice dismiss<cr><cmd>noh<cr><C-l><cmd>set scrollback=1<cr><cmd>set scrollback=-1<cr>")
+map("t", "<C-]>", "<esc><cmd>Noice dismiss<cr><cmd>noh<cr><C-l><cmd>set scrollback=1<cr><cmd>set scrollback=-1<cr>")
 
 -- buffers
 map("n", "<leader>br", "<cmd>e!<cr>", { desc = "Revert Buffer" })
+
+-- save file
+map({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
+
+-- Terminal Mappings
+-- map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
+map("t", "<C-h>", "<cmd>wincmd h<cr>", { desc = "Go to left window" })
+map("t", "<C-j>", "<cmd>wincmd j<cr>", { desc = "Go to lower window" })
+map("t", "<C-k>", "<cmd>wincmd k<cr>", { desc = "Go to upper window" })
+map("t", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Go to right window" })
+-- map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+map("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
+
+-- tabs
+map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
+map("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First Tab" })
+map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
+map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
+map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
+map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+
+-- Clear search with <esc>
+-- map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
+
+-- other
+map({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
