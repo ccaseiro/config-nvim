@@ -37,6 +37,7 @@ return {
             "luap",
             "markdown",
             "markdown_inline",
+            "org",
             "python",
             "query",
             "regex",

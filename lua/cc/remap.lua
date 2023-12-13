@@ -70,7 +70,7 @@ wk.register({ ["<leader>mt"] = { name = "+test" } })
 nnoremap("<leader>o-", "<cmd>Ex<CR>")
 
 -- project
-nnoremap("<leader>fP", "<cmd>Telescope project<CR>")
+nnoremap("<leader>fp", "<cmd>Telescope project<CR>")
 
 nnoremap("<leader>qq", "<cmd>qa<CR>")
 
@@ -169,7 +169,8 @@ map("n", "<leader>ws", "<C-W>s", { desc = "Split window below" })
 map("n", "<leader>wv", "<C-W>v", { desc = "Split window right" })
 
 -- seaarch
-map("n", "<leader>ss", "<cmd>Telescope lsp_document_symbols<cr>", { desc = "Goto Symbol" })
+map("n", "<leader>ss", "<cmd>Telescope lsp_document_symbols ignore_symbols='variable'<cr>", { desc = "Goto Function" })
+map("n", "<leader>sS", "<cmd>Telescope lsp_document_symbols<cr>", { desc = "Goto Symbol" })
 -- map("n", "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { desc = "Buffer" })
 
 -- telescope

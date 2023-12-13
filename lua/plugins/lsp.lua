@@ -49,6 +49,27 @@ return {
             --             nnoremap("[e", "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>")
             -- nnoremap("]e", "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>")
         },
+        opts = {
+            -- make sure mason installs the server
+            servers = {
+                jsonls = {
+                    -- lazy-load schemastore when needed
+                    on_new_config = function(new_config)
+                        new_config.settings.json.schemas = new_config.settings.json.schemas or {}
+                        vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
+                    end,
+                    settings = {
+                        json = {
+                            format = {
+                                enable = true,
+                            },
+                            validate = { enable = true },
+                        },
+                    },
+                },
+            },
+            setup = {},
+        },
         config = function(_, opts)
             for name, icon in pairs(require("cc.config").icons.diagnostics) do
                 name = "DiagnosticSign" .. name
@@ -57,15 +78,21 @@ return {
 
             lspconfig = require("lspconfig")
 
-            local on_new_config = function(_, config)
-                vim.env.VIRTUAL_ENV = "/Users/ccaseiro/Developer/Outscope/vap-st-connector/lambdas/.venv"
-                vim.env.PATH = "/Users/ccaseiro/Developer/Outscope/vap-st-connector/lambdas/.venv/bin:" .. vim.env.PATH
-                vim.env.PYTHONHOME = ""
-            end
+            -- local on_new_config = function(_, config)
+            --     -- vim.env.VIRTUAL_ENV = "/Users/ccaseiro/Developer/Outscope/vap-st-connector/lambdas/.venv"
+            --     -- vim.env.PATH = "/Users/ccaseiro/Developer/Outscope/vap-st-connector/lambdas/.venv/bin:" .. vim.env.PATH
+            --     vim.env.VIRTUAL_ENV =
+            --         "/Users/ccaseiro/Developer/Outscope/vap-l2c-core/functions/fetch_cache_login/.venv"
+            --     vim.env.PATH =
+            --         -- ".venv/bin:/opt/homebrew/bin:/Users/ccaseiro/Developer/Outscope/vap-st-connector/lambdas/.venv/bin:"
+            --         -- ".venv/bin:$HOME/.pyenv/shims:" .. vim.env.PATH
+            --         "$HOME/.pyenv/shims:" .. vim.env.PATH
+            --     vim.env.PYTHONHOME = ""
+            -- end
 
             lspconfig.pyright.setup({
                 on_attach = on_attach,
-                on_new_config = on_new_config,
+                -- on_new_config = on_new_config,
             })
         end,
     },

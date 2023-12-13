@@ -2,7 +2,9 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     -- command = "lua vim.lsp.buf.format()",
     callback = function()
         if require("cc.util").autoformat then
-            vim.lsp.buf.format()
+            -- require("conform").format({ bufnr = args.buf })
+            require("conform").format()
+            -- vim.lsp.buf.format()
         end
     end,
 })
@@ -48,6 +50,7 @@ cmp.setup({
     }),
 
     sources = {
+        { name = "copilot" },
         { name = "luasnip" },
         { name = "path" }, -- add "keyword_length = 2" to set numbers of chars to begin query
         { name = "nvim_lsp" },
@@ -58,18 +61,25 @@ cmp.setup({
 
     formatting = {
         fields = { "menu", "abbr", "kind" },
-        format = function(entry, item)
-            local menu_icon = {
-                nvim_lsp = "λ",
-                -- luasnip = '⋗',
-                buffer = "Ω",
-                path = "🖫",
-                cmdline = "⋗",
-            }
-
-            item.menu = menu_icon[entry.source.name]
-            return item
-        end,
+        format = require("lspkind").cmp_format({
+            mode = "symbol",
+            max_width = 50,
+            symbol_map = {
+                Copilot = "",
+            },
+        }),
+        -- format = function(entry, item)
+        --     local menu_icon = {
+        --         nvim_lsp = "λ",
+        --         -- luasnip = '⋗',
+        --         buffer = "Ω",
+        --         path = "🖫",
+        --         cmdline = "⋗",
+        --     }
+        --
+        --     item.menu = menu_icon[entry.source.name]
+        --     return item
+        -- end,
     },
 })
 
@@ -85,19 +95,20 @@ cmp.setup.cmdline("/", {
     sources = cmp.config.sources({
         { name = "nvim_lsp_document_symbol", max_item_count = 8, keyword_length = 3 },
         { name = "buffer", max_item_count = 5, keyword_length = 5 },
+        { name = "orgmode" },
     }),
 })
 
-local readline = require("readline")
-vim.keymap.set("!", "<M-f>", readline.forward_word)
-vim.keymap.set("!", "<M-b>", readline.backward_word)
-vim.keymap.set("!", "<C-a>", readline.dwim_beginning_of_line)
-vim.keymap.set("!", "<C-e>", readline.end_of_line)
-vim.keymap.set("!", "<M-d>", readline.kill_word)
-vim.keymap.set("!", "<M-BS>", readline.backward_kill_word)
--- vim.keymap.set('!', '<C-w>', readline.unix_word_rubout)
--- vim.keymap.set('!', '<C-k>', readline.kill_line)
-vim.keymap.set("!", "<C-u>", readline.dwim_backward_kill_line)
+-- local readline = require("readline")
+-- vim.keymap.set("!", "<M-f>", readline.forward_word)
+-- vim.keymap.set("!", "<M-b>", readline.backward_word)
+-- vim.keymap.set("!", "<C-a>", readline.dwim_beginning_of_line)
+-- vim.keymap.set("!", "<C-e>", readline.end_of_line)
+-- vim.keymap.set("!", "<M-d>", readline.kill_word)
+-- vim.keymap.set("!", "<M-BS>", readline.backward_kill_word)
+-- -- vim.keymap.set('!', '<C-w>', readline.unix_word_rubout)
+-- -- vim.keymap.set('!', '<C-k>', readline.kill_line)
+-- vim.keymap.set("!", "<C-u>", readline.dwim_backward_kill_line)
 
 -- highlight yank
 

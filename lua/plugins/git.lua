@@ -1,10 +1,15 @@
 return {
     {
-        "TimUntersberger/neogit",
+        "NeogitOrg/neogit",
         dependencies = "nvim-lua/plenary.nvim",
         opts = {
             disable_commit_confirmation = true,
             -- use_magit_keybindings = true
+            -- sections = {
+            --     untracked = {
+            --         folded = true,
+            --     },
+            -- },
         },
     },
     {
@@ -53,9 +58,10 @@ return {
                     -- map({'n', 'v'}, '<leader>hs', ':Gitsigns stage_hunk<CR>')
                     -- map({'n', 'v'}, '<leader>hr', ':Gitsigns reset_hunk<CR>')
 
-                    map("n", "<leader>ghS", gs.stage_buffer, { desc = "Stage hunk" })
                     map("n", "<leader>ghu", gs.undo_stage_hunk, { desc = "Unstage Stage" })
                     map("n", "<leader>ghR", gs.reset_buffer, { desc = "Reset Buffer" })
+                    map("n", "<leader>ghS", gs.stage_buffer, { desc = "Stage Buffer" })
+                    map("n", "<leader>ghs", gs.stage_hunk, { desc = "Stage hunk" })
                     map("n", "<leader>ghp", gs.preview_hunk, { desc = "Preview hunk" })
                     map("n", "<leader>ghP", gs.preview_hunk_inline, { desc = "Preview hunk inline" })
                     map("n", "<leader>ghb", function()

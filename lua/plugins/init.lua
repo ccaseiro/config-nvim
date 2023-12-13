@@ -103,12 +103,20 @@ return {
             },
             {
                 "R",
-                mode = { "n", "o", "x" },
+                mode = { "o", "x" },
                 function()
                     -- show labeled treesitter nodes around the search matches
                     require("flash").treesitter_search()
                 end,
                 desc = "Treesitter Search",
+            },
+            {
+                "<c-s>",
+                mode = { "c" },
+                function()
+                    require("flash").toggle()
+                end,
+                desc = "Toggle Flash Search",
             },
         },
     },
@@ -168,6 +176,8 @@ return {
         end,
     },
 
+    "onsails/lspkind.nvim",
+
     -- cmp
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
@@ -183,7 +193,7 @@ return {
         end,
     },
 
-    "linty-org/readline.nvim",
+    -- "linty-org/readline.nvim",
 
     {
         "akinsho/toggleterm.nvim",
@@ -226,7 +236,9 @@ return {
             {
                 "<leader>qw",
                 function()
-                    vim.ui.input({ prompt = "Name: " }, function(name)
+                    local project_actions = require("telescope._extensions.project.actions")
+                    local project_name = project_actions.get_selected_title()
+                    vim.ui.input({ prompt = "Name: ", default = project_name }, function(name)
                         MiniSessions.write(name)
                     end)
                 end,
@@ -235,9 +247,14 @@ return {
             {
                 "<leader>qd",
                 function()
-                    MiniSessions.config = { autowrite = false }
+                    -- local project_actions = require("telescope._extensions.project.actions")
+                    -- local project_name = project_actions.get_selected_title()
+                    local session_name = MiniSessions.select("delete")
+                    -- vim.ui.input({ prompt = "Name: ", default = session_name }, function(name)
+                    --     MiniSessions.delete(name)
+                    -- end)
                 end,
-                desc = "Don't Save Current Session",
+                desc = "Delete Session",
             },
         },
         config = function()
@@ -355,5 +372,249 @@ return {
         setup = function()
             vim.g.matchup_matchparen_offscreen = { method = "popup" }
         end,
+    },
+    {
+        "ThePrimeagen/harpoon",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        keys = {
+            {
+                "<leader><cr>",
+                "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>",
+                desc = "view all project marks",
+            },
+            {
+                "<leader>ml",
+                "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>",
+                desc = "view all project marks",
+            },
+            {
+                "<leader>ma",
+                "<cmd>lua require('harpoon.mark').add_file()<cr>",
+                desc = "mark files",
+            },
+            {
+                "<leader>mm",
+                "<cmd>lua require('harpoon.ui').nav_file(1)<cr>",
+                desc = "navigates to file 1",
+            },
+            {
+                "<leader>mn",
+                "<cmd>lua require('harpoon.ui').nav_file(2)<cr>",
+                desc = "navigates to file 2",
+            },
+            {
+                "<leader>me",
+                "<cmd>lua require('harpoon.ui').nav_file(3)<cr>",
+                desc = "navigates to file 3",
+            },
+            {
+                "<leader>mi",
+                "<cmd>lua require('harpoon.ui').nav_file(4)<cr>",
+                desc = "navigates to file 4",
+            },
+            {
+                "<leader>mo",
+                "<cmd>lua require('harpoon.ui').nav_file(5)<cr>",
+                desc = "navigates to file 5",
+            },
+            {
+                "<leader>mj",
+                "<cmd>lua require('harpoon.ui').nav_next()<cr>",
+                desc = "navigates to next mark",
+            },
+            {
+                "<leader>mk",
+                "<cmd>lua require('harpoon.ui').nav_next()<cr>",
+                desc = "navigates to prev mark",
+            },
+            {
+                "<leader>mq",
+                "<cmd>lua require('harpoon.term').gotoTerminal(1)<cr>",
+                desc = "navigates to term 1",
+            },
+            {
+                "<leader>mw",
+                "<cmd>lua require('harpoon.term').gotoTerminal(2)<cr>",
+                desc = "navigates to term 2",
+            },
+            {
+                "<leader>mf",
+                "<cmd>lua require('harpoon.term').gotoTerminal(3)<cr>",
+                desc = "navigates to term 3",
+            },
+            {
+                "<leader>mp",
+                "<cmd>lua require('harpoon.term').gotoTerminal(4)<cr>",
+                desc = "navigates to term 4",
+            },
+            {
+                "<leader>mb",
+                "<cmd>lua require('harpoon.term').gotoTerminal(5)<cr>",
+                desc = "navigates to term 5",
+            },
+        },
+        config = function()
+            require("telescope").load_extension("harpoon")
+        end,
+    },
+    {
+        "willothy/flatten.nvim",
+        config = true,
+        -- or pass configuration with
+        -- opts = {  }
+        -- Ensure that it runs first to minimize delay when opening file from terminal
+        lazy = false,
+        priority = 1001,
+    },
+    {
+        "chentoast/marks.nvim",
+        config = function()
+            require("marks").setup({
+                bookmark_0 = {
+                    sign = "⚑",
+                },
+            })
+        end,
+    },
+    {
+        "nvim-orgmode/orgmode",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+        },
+        config = function()
+            require("orgmode").setup_ts_grammar()
+            require("nvim-treesitter.configs").setup({
+                -- If TS highlights are not enabled at all, or disabled via `disable` prop,
+                -- highlighting will fallback to default Vim syntax highlighting
+                highlight = {
+                    enable = true,
+                    -- Required for spellcheck, some LaTex highlights and
+                    -- code block highlights that do not have ts grammar
+                    additional_vim_regex_highlighting = { "org" },
+                },
+                ensure_installed = { "org" }, -- Or run :TSUpdate org
+            })
+
+            require("orgmode").setup({})
+        end,
+    },
+    { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+    -- {
+    --     "m4xshen/hardtime.nvim",
+    --     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+    --     opts = {
+    --         max_count = 10,
+    --         disable_mouse = false,
+    --         disabled_keys = {
+    --             ["<Up>"] = {},
+    --             ["<Down>"] = {},
+    --             ["<Left>"] = {},
+    --             ["<Right>"] = {},
+    --         },
+    --     },
+    -- },
+    {
+        "zbirenbaum/copilot.lua",
+        cmd = "Copilot",
+        build = ":Copilot auth",
+        opts = {
+            suggestion = { enabled = false },
+            panel = { enabled = false },
+            filetypes = {
+                markdown = true,
+                help = true,
+            },
+        },
+    },
+    -- {
+    --     "nvim-cmp",
+    --     dependencies = {
+    --         {
+    --             "zbirenbaum/copilot-cmp",
+    --             dependencies = "copilot.lua",
+    --             opts = {},
+    --             config = function(_, opts)
+    --                 local copilot_cmp = require("copilot_cmp")
+    --                 copilot_cmp.setup(opts)
+    --                 -- attach cmp source whenever copilot attaches
+    --                 -- fixes lazy-loading issues with the copilot cmp source
+    --                 require("lazyvim.util").lsp.on_attach(function(client)
+    --                     if client.name == "copilot" then
+    --                         copilot_cmp._on_insert_enter({})
+    --                     end
+    --                 end)
+    --             end,
+    --         },
+    --     },
+    --     ---@param opts cmp.ConfigSchema
+    --     opts = function(_, opts)
+    --         table.insert(opts.sources, 1, {
+    --             name = "copilot",
+    --             group_index = 1,
+    --             priority = 100,
+    --         })
+    --     end,
+    -- },
+    {
+        "zbirenbaum/copilot-cmp",
+        dependencies = "copilot.lua",
+        opts = {},
+        config = function(_, opts)
+            local copilot_cmp = require("copilot_cmp")
+            copilot_cmp.setup(opts)
+            -- attach cmp source whenever copilot attaches
+            -- fixes lazy-loading issues with the copilot cmp source
+            -- require("lazyvim.util").lsp.on_attach(function(client)
+            --     if client.name == "copilot" then
+            --         copilot_cmp._on_insert_enter({})
+            --     end
+            -- end)
+        end,
+    },
+    {
+        "stevearc/conform.nvim",
+        dependencies = { "mason.nvim" },
+        lazy = true,
+        cmd = "ConformInfo",
+
+        opts = {
+            format_on_save = {
+                -- I recommend these options. See :help conform.format for details.
+                lsp_fallback = true,
+                timeout_ms = 500,
+            },
+            -- -- If this is set, Conform will run the formatter asynchronously after save.
+            -- -- It will pass the table to conform.format().
+            -- -- This can also be a function that returns the table.
+            -- format_after_save = {
+            --     lsp_fallback = true,
+            -- },
+
+            formatters_by_ft = {
+                python = { "black" },
+                lua = { "stylua" },
+                fish = { "fish_indent" },
+                terraform = { "terraform_fmt" },
+                sh = { "shfmt" },
+            },
+        },
+    },
+    {
+        "linux-cultist/venv-selector.nvim",
+        dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim", "mfussenegger/nvim-dap-python" },
+        opts = {
+            -- Your options go here
+            name = ".venv",
+            -- auto_refresh = false
+        },
+        event = "VeryLazy", -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
+        keys = {
+            -- Keymap to open VenvSelector to pick a venv.
+            { "<leader>cv", "<cmd>VenvSelect<cr>" },
+            -- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
+            { "<leader>cc", "<cmd>VenvSelectCached<cr>" },
+        },
     },
 }

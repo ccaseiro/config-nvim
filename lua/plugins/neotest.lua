@@ -15,6 +15,11 @@ return {
             { "<leader>mts", "<cmd>lua require('neotest').summary.toggle()<cr>", desc = "toggle summary" },
             { "<leader>mtS", "<cmd>lua require('neotest').run.stop()<cr>", desc = "stop nearest test" },
             { "<leader>mtt", "<cmd>lua require('neotest').run.run()<cr>", desc = "run nearest test" },
+            {
+                "<leader>mtv",
+                "<cmd>lua require('neotest').run.run({ extra_args = {'-vv'}})<cr>",
+                desc = "run nearest test (verbose)",
+            },
         },
         dependencies = {
             "nvim-lua/plenary.nvim",
@@ -29,10 +34,18 @@ return {
             require("neotest").setup({
                 adapters = {
                     require("neotest-rust"),
-                    require("neotest-jest"),
+                    require("neotest-jest")({
+                        cwd = function(path)
+                            -- return vim.fn.getcwd()
+                            return "/Users/ccaseiro/Developer/Outscope/vap-api/modules/lambda/layers"
+                        end,
+                    }),
                     require("neotest-python")({
                         runner = "pytest",
                         python = ".venv/bin/python",
+                        cwd = function(path)
+                            return "/Users/ccaseiro/Developer/Outscope/vap-l2c-core/functions/fetch_cache_login/"
+                        end,
                         -- is_test_file = function(file_path)
                         --     return true
                         -- end,

@@ -35,3 +35,9 @@ vim.o.winwidth = 10
 vim.o.winminwidth = 10
 vim.o.winheight = 5
 vim.o.winminheight = 5
+
+vim.filetype.add({
+    extension = {
+        tpl = "json",
+    },
+})
