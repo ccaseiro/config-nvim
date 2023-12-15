@@ -151,7 +151,7 @@ nnoremap("<C-j>", [[<C-w>j]])
 nnoremap("<C-l>", [[<C-w>l]])
 nnoremap("<C-h>", [[<C-w>h]])
 
-wk.register({ ["<leader>x"] = { "<cmd>Telescope attempt<cr>", "List Scratch buffers" } })
+wk.register({ ["<leader>bX"] = { "<cmd>Telescope attempt<cr>", "List Scratch buffers" } })
 wk.register({ ["<leader>bx"] = { "<cmd>lua require('attempt').new_select()<cr>", "New Scratch buffers" } })
 
 --------------------------------------------------------------------------------
@@ -241,3 +241,9 @@ map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
 -- other
 map({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
+
+map("n", "<leader>xL", "<cmd>lopen<cr>", { desc = "Location List" })
+map("n", "<leader>xQ", "<cmd>copen<cr>", { desc = "Quickfix List" })
+
+map("n", "[q", vim.cmd.cprev, { desc = "Previous quickfix" })
+map("n", "]q", vim.cmd.cnext, { desc = "Next quickfix" })
