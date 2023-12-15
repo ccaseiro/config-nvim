@@ -46,6 +46,13 @@ return {
         { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
         { "<leader>sc", "<cmd>Telescope command_history<cr>", desc = "Command History" },
         { "<leader>sd", "<cmd>Telescope live_grep cwd=%:p:h<CR>", desc = "Search file cwd" },
+        {
+            "<leader>sv",
+            function()
+                require("telescope.builtin").live_grep({ additional_args = { "--case-sensitive" } })
+            end,
+            desc = "Search file cwd",
+        },
         { "<leader>sDD", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Document diagnostics" },
         { "<leader>sDd", "<cmd>Telescope diagnostics<cr>", desc = "Workspace diagnostics" },
         { "<leader>sG", "<cmd>Telescope live_grep cwd=false<CR>", desc = "search cwd" },
@@ -65,6 +72,7 @@ return {
         { "nvim-telescope/telescope-file-browser.nvim" },
         { "nvim-telescope/telescope-project.nvim" },
         { "nvim-telescope/telescope-ui-select.nvim" },
+        { "nvim-telescope/telescope-live-grep-args.nvim" },
         "debugloop/telescope-undo.nvim",
     },
     config = function()
@@ -151,5 +159,6 @@ return {
         telescope.load_extension("attempt")
         telescope.load_extension("ui-select")
         telescope.load_extension("undo")
+        telescope.load_extension("live_grep_args")
     end,
 }
