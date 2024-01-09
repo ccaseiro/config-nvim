@@ -5,7 +5,6 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     dependencies = {
         "nvim-treesitter/nvim-treesitter-context",
-
         {
             "nvim-treesitter/nvim-treesitter-textobjects",
             init = function()
@@ -20,6 +19,13 @@ return {
     cmd = { "TSUpdateSync" },
     keys = {
         { "<leader>ut", "<cmd>TSContextToggle<CR>", desc = "Toggle Treesitter Context" },
+        {
+            "gt",
+            function()
+                require("treesitter-context").go_to_context(vim.v.count1)
+            end,
+            desc = "Go to Treesitter context",
+        },
     },
     ---@type TSConfig
     opts = {
