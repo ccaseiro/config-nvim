@@ -19,8 +19,7 @@ return {
     },
     cmd = { "TSUpdateSync" },
     keys = {
-        { "<c-space>", desc = "Increment selection" },
-        { "<bs>", desc = "Decrement selection", mode = "x" },
+        { "<leader>ut", "<cmd>TSContextToggle<CR>", desc = "Toggle Treesitter Context" },
     },
     ---@type TSConfig
     opts = {
