@@ -27,6 +27,9 @@ return {
         indent = { enable = true },
         ensure_installed = {
             "bash",
+            "fish",
+            "gitcommit",
+            "gitignore",
             "html",
             "hcl",
             "javascript",
