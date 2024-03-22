@@ -74,6 +74,15 @@ return {
         { "nvim-telescope/telescope-ui-select.nvim" },
         { "nvim-telescope/telescope-live-grep-args.nvim" },
         "debugloop/telescope-undo.nvim",
+        {
+            "danielfalk/smart-open.nvim",
+            branch = "0.2.x",
+            config = function() end,
+            dependencies = {
+                "kkharji/sqlite.lua",
+                { "nvim-telescope/telescope-fzy-native.nvim" },
+            },
+        },
     },
     config = function()
         local fb_actions = require("telescope").extensions.file_browser.actions
@@ -160,5 +169,6 @@ return {
         telescope.load_extension("ui-select")
         telescope.load_extension("undo")
         telescope.load_extension("live_grep_args")
+        telescope.load_extension("smart_open")
     end,
 }
