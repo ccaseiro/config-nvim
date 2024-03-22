@@ -1,7 +1,7 @@
 return {
     {
         "NeogitOrg/neogit",
-        dependencies = "nvim-lua/plenary.nvim",
+        dependencies = { "nvim-lua/plenary.nvim", "sindrets/diffview.nvim" },
         opts = {
             disable_commit_confirmation = true,
             -- use_magit_keybindings = true
