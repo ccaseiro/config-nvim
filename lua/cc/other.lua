@@ -83,19 +83,22 @@ cmp.setup({
     },
 })
 
--- cmp.setup.cmdline(":", {
---     sources = cmp.config.sources({
---         { name = "path", max_item_count = 5 },
---         { name = "cmdline", max_item_count = 15 },
---     }),
--- })
+cmp.setup.cmdline(":", {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+        -- { name = "path", max_item_count = 5 },
+        { name = "path" },
+        { name = "cmdline" },
+    }),
+})
 
 -- lsp_document_symbols
 cmp.setup.cmdline("/", {
+    mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
-        { name = "nvim_lsp_document_symbol", max_item_count = 8, keyword_length = 3 },
-        { name = "buffer", max_item_count = 5, keyword_length = 5 },
-        { name = "orgmode" },
+        -- { name = "nvim_lsp_document_symbol", max_item_count = 8, keyword_length = 3 },
+        { name = "buffer" },
+        -- { name = "orgmode" },
     }),
 })
 

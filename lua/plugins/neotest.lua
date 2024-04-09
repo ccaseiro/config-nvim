@@ -44,7 +44,7 @@ return {
                         runner = "pytest",
                         python = ".venv/bin/python",
                         cwd = function(path)
-                            return "/Users/ccaseiro/Developer/Outscope/vap-l2c-core/functions/fetch_cache_login/"
+                            return "/Users/ccaseiro/Temp/vap-st-connector/lambdas/"
                         end,
                         -- is_test_file = function(file_path)
                         --     return true

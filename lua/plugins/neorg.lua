@@ -9,7 +9,7 @@ return {
         --         desc = "index",
         --     },
         -- },
-        build = ":Neorg sync-parsers",
+        -- build = ":Neorg sync-parsers",
         opts = {
             load = {
                 ["core.defaults"] = {}, -- Loads default behaviour

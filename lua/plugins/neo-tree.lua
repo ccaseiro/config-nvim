@@ -6,9 +6,16 @@ return {
         {
             "<leader>e",
             function()
-                require("neo-tree.command").execute({ toggle = true, position = "float" })
+                require("neo-tree.command").execute({ toggle = true, position = "float", dir = vim.loop.cwd() })
             end,
             desc = "Explorer NeoTree (cwd)",
+        },
+        {
+            "<leader>E",
+            function()
+                require("neo-tree.command").execute({ toggle = true, position = "float", dir = vim.loop.os_homedir() })
+            end,
+            desc = "Explorer NeoTree (Home)",
         },
         {
             "<leader>fe",
@@ -22,7 +29,7 @@ return {
             function()
                 require("neo-tree.command").execute({ position = "left", dir = vim.loop.os_homedir() })
             end,
-            desc = "Explorer NeoTree (cwd)",
+            desc = "Explorer NeoTree (Home)",
         },
     },
 

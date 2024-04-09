@@ -264,77 +264,6 @@ return {
     },
 
     {
-        "renerocksai/telekasten.nvim",
-        lazy = false,
-        dependencies = {
-            "nvim-telescope/telescope.nvim",
-            "renerocksai/calendar-vim",
-        },
-        keys = {
-            {
-                "<leader>nc",
-                "<cmd>Telekasten show_calendar<cr>",
-                desc = "show calendar",
-            },
-            {
-                "<leader>nC",
-                "<cmd>CalendarT<cr>",
-                desc = "calendar",
-            },
-            {
-                "<leader>np",
-                "<cmd>Telekasten panel<cr>",
-                desc = "panel",
-            },
-            {
-                "<leader>nf",
-                "<cmd>Telekasten find_notes<cr>",
-                desc = "find notes",
-            },
-            {
-                "<leader>ng",
-                "<cmd>Telekasten search_notes<cr>",
-                desc = "search notes",
-            },
-            {
-                "<leader>nd",
-                "<cmd>Telekasten goto_today<cr>",
-                desc = "goto today",
-            },
-            {
-                "<leader>ni",
-                "<cmd>Telekasten follow_link<cr>",
-                desc = "follow link",
-            },
-            {
-                "<leader>nn",
-                "<cmd>Telekasten new_note<cr>",
-                desc = "new note",
-            },
-            {
-                "<leader>nt",
-                "<cmd>Telekasten toggle_todo<cr>",
-                desc = "toggle todo",
-            },
-            {
-                "<leader>nw",
-                "<cmd>Telekasten goto_thisweek<cr>",
-                desc = "goto this week",
-            },
-        },
-        config = function()
-            local home = vim.fn.expand("~/Documents/Notes") -- Put the name of your notes directory here
-            require("telekasten").setup({
-                home = home,
-                -- dir names for special notes (absolute path or subdir name)
-                dailies = home .. "/" .. "daily",
-                weeklies = home .. "/" .. "weekly",
-                templates = home .. "/" .. "templates",
-            })
-        end,
-    },
-
-    {
         "iamcco/markdown-preview.nvim",
         build = "cd app && npm install",
         init = function()
@@ -343,7 +272,7 @@ return {
         lazy = false,
         keys = {
             {
-                "<leader>no",
+                "<leader>np",
                 "<cmd>MarkdownPreviewToggle<cr>",
                 desc = "markdown preview",
             },

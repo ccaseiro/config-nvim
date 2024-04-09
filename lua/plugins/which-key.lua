@@ -17,10 +17,10 @@ return {
             ["<leader>g"] = { name = "+git" },
             ["<leader>gh"] = { name = "+hunks" },
             ["<leader>m"] = { name = "+<localleader>" },
-            ["<leader>n"] = { name = "+notes" },
             ["<leader>o"] = { name = "+open" },
             ["<leader>q"] = { name = "+quit/session" },
             ["<leader>s"] = { name = "+search" },
+            ["<leader>sn"] = { name = "+noice" },
             ["<leader>w"] = { name = "+windows" },
         }
         wk.register(keymaps)

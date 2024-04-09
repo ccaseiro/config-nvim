@@ -17,4 +17,21 @@ function M.toggle()
     end
 end
 
+M.var_toggle_01 = true
+
+function M.toggle_01()
+    M.var_toggle_01 = not M.var_toggle_01
+    return M.var_toggle_01
+    -- if vim.b.var_toggle_01 == false then
+    --     vim.b.var_toggle_01 = nil
+    --     M.var_toggle_01 = true
+    -- else
+    --     M.autoformat = not M.autoformat
+    -- end
+    -- if M.var_toggle_01 then
+    --     Util.info("Enabled format on save", { title = "Format" })
+    -- else
+    --     Util.warn("Disabled format on save", { title = "Format" })
+    -- end
+end
 return M
