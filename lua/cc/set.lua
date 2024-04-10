@@ -18,10 +18,10 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 vim.o.conceallevel = 2
 
-vim.o.foldcolumn = "5"
-vim.o.foldlevel = 99
-vim.o.foldlevelstart = 99
-vim.o.foldenable = true
+-- vim.o.foldcolumn = "1"
+-- vim.o.foldlevel = 99
+-- vim.o.foldlevelstart = 99
+-- vim.o.foldenable = true
 
 -- vim.opt.clipboard = "unnamed,unnamedplus"
 vim.opt.clipboard = "unnamedplus"
