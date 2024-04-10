@@ -18,6 +18,13 @@ return {
                 end,
                 desc = "mini.files",
             },
+            {
+                "<leader>fh",
+                function()
+                    require("mini.files").open("~/")
+                end,
+                desc = "Open Home (mini)",
+            },
         },
     },
     {
