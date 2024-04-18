@@ -1,5 +1,15 @@
 return {
     {
+        "sindrets/diffview.nvim",
+        lazy = false,
+        keys = {
+            { "<leader>gL", "<cmd>DiffviewFileHistory %<cr>", desc = "Current File History" },
+            { "<leader>gB", "<cmd>DiffviewFileHistory<cr>", desc = "Current Branch History" },
+            { "<leader>gO", "<cmd>DiffviewOpen<cr>", desc = "Diffview open" },
+            { "<leader>gC", "<cmd>DiffviewClose<cr>", desc = "Diffview close" },
+        },
+    },
+    {
         "NeogitOrg/neogit",
         dependencies = { "nvim-lua/plenary.nvim", "sindrets/diffview.nvim" },
         opts = {
