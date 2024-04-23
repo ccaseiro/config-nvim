@@ -530,10 +530,12 @@ return {
     {
         "linux-cultist/venv-selector.nvim",
         dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim", "mfussenegger/nvim-dap-python" },
+        cmd = "VenvSelect",
         opts = {
             -- Your options go here
-            name = ".venv",
+            name = { ".venv", ".venv-prod", ".venv-pipeline" },
             -- auto_refresh = false
+            -- parents = 2,
         },
         event = "VeryLazy", -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
         keys = {
@@ -542,6 +544,20 @@ return {
             -- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
             { "<leader>cc", "<cmd>VenvSelectCached<cr>" },
         },
+        config = function(_, opts)
+            require("venv-selector").setup(opts)
+            local augroup = vim.api.nvim_create_augroup("VenvSelectorRetrieve", { clear = true })
+            vim.api.nvim_create_autocmd({ "LspAttach" }, {
+                pattern = { "*.py" },
+                group = augroup,
+                callback = function(args)
+                    if vim.lsp.get_client_by_id(args["data"]["client_id"])["name"] == "pyright" then
+                        require("venv-selector").retrieve_from_cache()
+                        vim.api.nvim_del_augroup_by_id(augroup)
+                    end
+                end,
+            })
+        end,
     },
     -- {
     --     "folke/trouble.nvim",
