@@ -123,10 +123,6 @@ return {
     },
 
     -- Colorschemes
-    "folke/tokyonight.nvim",
-    "ellisonleao/gruvbox.nvim",
-    "luisiacc/gruvbox-baby",
-    "joshdick/onedark.vim",
 
     {
         "nvim-lualine/lualine.nvim",
