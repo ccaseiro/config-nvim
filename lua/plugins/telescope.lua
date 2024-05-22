@@ -63,6 +63,12 @@ return {
         { "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Jump to Mark" },
         { "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
         { "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
+        {
+            "<leader>ss",
+            "<cmd>Telescope lsp_document_symbols ignore_symbols='variable' symbol_width=60<cr>",
+            desc = "Goto Function",
+        },
+        { "<leader>sS", "<cmd>Telescope lsp_document_symbols symbol_width=60<cr>", desc = "Goto Symbol" },
         { "<leader>uC", "<cmd>Telescope colorscheme enable_preview=true<cr>", desc = "Colorscheme with preview" },
     },
     dependencies = {
@@ -89,18 +95,19 @@ return {
         local project_actions = require("telescope._extensions.project.actions")
         local mini_sessions = require("mini.sessions")
         local telescope = require("telescope")
+        local actions = require("telescope.actions")
 
         telescope.setup({
             defaults = {
                 file_ignore_patterns = { "node_modules" },
                 -- mappings = {
                 --     i = {
-                --         -- map actions.which_key to <C-h> (default: <C-/>)
-                --         -- actions.which_key shows the mappings for your picker,
-                --         -- e.g. git_{create, delete, ...}_branch for the git_branches picker
-                --         ["<C-h>"] = "which_key"
-                --     }
-                -- }
+                --         ["<M-l>"] = actions.send_selected_to_qflist + actions.open_qflist,
+                --     },
+                --     n = {
+                --         ["<M-l>"] = actions.send_selected_to_qflist + actions.open_qflist,
+                --     },
+                -- },
             },
             pickers = {
                 live_grep = {

@@ -168,14 +168,6 @@ map("n", "<leader>wc", "<C-W>c", { desc = "Delete window" })
 map("n", "<leader>ws", "<C-W>s", { desc = "Split window below" })
 map("n", "<leader>wv", "<C-W>v", { desc = "Split window right" })
 
--- seaarch
-map("n", "<leader>ss", "<cmd>Telescope lsp_document_symbols ignore_symbols='variable'<cr>", { desc = "Goto Function" })
-map("n", "<leader>sS", "<cmd>Telescope lsp_document_symbols<cr>", { desc = "Goto Symbol" })
--- map("n", "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { desc = "Buffer" })
-
--- telescope
--- map("n", "<leader>'", "<cmd>Telescope resume<cr>", { desc = "Resume" })
-
 map("n", "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", { desc = "Switch Buffer" })
 map("n", "<leader>:", "<cmd>Telescope command_history<cr>", { desc = "Command History" })
 -- map("n", "<leader>sh", "<cmd>Telescope help_tags<cr>", { desc = "Help Pages" })
@@ -208,10 +200,20 @@ map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 -- new file
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
--- map("n", "<C-l>", "<cmd>Noice dismiss<cr><cmd>noh<cr><C-l>", { desc = "New File" })
-map("n", "<C-]>", "<cmd>Noice dismiss<cr><cmd>noh<cr><C-l>")
--- map("n", "<C-]>", "<esc><cmd>Noice dismiss<cr><cmd>noh<cr><C-l><cmd>set scrollback=1<cr><cmd>set scrollback=-1<cr>")
-map("t", "<C-]>", "<esc><cmd>Noice dismiss<cr><cmd>noh<cr><C-l><cmd>set scrollback=1<cr><cmd>set scrollback=-1<cr>")
+-- map("n", "<C-]>", "<cmd>Noice dismiss<cr><cmd>noh<cr><C-l>")
+-- map("t", "<C-]>", "<esc><cmd>Noice dismiss<cr><cmd>noh<cr><C-l><cmd>set scrollback=1<cr><cmd>set scrollback=-1<cr>")
+
+-- Clear search with <esc>
+map({ "i", "n" }, "<esc>", "<cmd>Noice dismiss<cr><cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })
+
+-- Clear search, diff update and redraw
+-- taken from runtime/lua/_editor.lua
+map(
+    "n",
+    "<leader>ur",
+    "<cmd>Noice dismiss<cr><Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
+    { desc = "Redraw / Clear hlsearch / Diff Update" }
+)
 
 -- buffers
 map("n", "<leader>br", "<cmd>e!<cr>", { desc = "Revert Buffer" })

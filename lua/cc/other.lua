@@ -146,4 +146,4 @@ autocmd("TextYankPost", {
 -- require("treesitter-context").setup({})
 
 -- fold: ufo
-require("ufo").setup({})
+-- require("ufo").setup({})

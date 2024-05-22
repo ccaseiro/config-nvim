@@ -406,24 +406,21 @@ return {
     },
     {
         "nvim-orgmode/orgmode",
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-        },
+        event = "VeryLazy",
+        ft = { "org" },
         config = function()
-            require("orgmode").setup_ts_grammar()
-            require("nvim-treesitter.configs").setup({
-                -- If TS highlights are not enabled at all, or disabled via `disable` prop,
-                -- highlighting will fallback to default Vim syntax highlighting
-                highlight = {
-                    enable = true,
-                    -- Required for spellcheck, some LaTex highlights and
-                    -- code block highlights that do not have ts grammar
-                    additional_vim_regex_highlighting = { "org" },
-                },
-                ensure_installed = { "org" }, -- Or run :TSUpdate org
+            -- Setup orgmode
+            require("orgmode").setup({
+                org_agenda_files = "~/orgfiles/**/*",
+                org_default_notes_file = "~/orgfiles/refile.org",
             })
 
-            require("orgmode").setup({})
+            -- NOTE: If you are using nvim-treesitter with `ensure_installed = "all"` option
+            -- add `org` to ignore_install
+            -- require('nvim-treesitter.configs').setup({
+            --   ensure_installed = 'all',
+            --   ignore_install = { 'org' },
+            -- })
         end,
     },
     { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
@@ -543,6 +540,7 @@ return {
             { "<leader>cv", "<cmd>VenvSelect<cr>" },
             -- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
             { "<leader>cc", "<cmd>VenvSelectCached<cr>" },
+            { "<leader>cC", "<cmd>VenvSelectCurrent<cr>" },
         },
         config = function(_, opts)
             require("venv-selector").setup(opts)
@@ -572,7 +570,7 @@ return {
         "folke/trouble.nvim",
         cmd = { "TroubleToggle", "Trouble" },
         event = "VeryLazy",
-        opts = { use_diagnostic_signs = true, auto_open = true, auto_close = true },
+        opts = { use_diagnostic_signs = true, auto_open = false, auto_close = true },
         keys = {
             { "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
             { "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
@@ -622,5 +620,45 @@ return {
             keys = {
                 { "<leader>sr", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
             },
+    },
+    {
+        "chrisbra/Colorizer",
+    },
+    {
+        "m00qek/baleia.nvim",
+        config = function()
+            vim.api.nvim_create_user_command("BaleiaColorize", function()
+                local baleia = require("baleia").setup({
+                    colors = {
+                        [00] = "Black",
+                        [01] = "DarkRed",
+                        [02] = "DarkGreen",
+                        [03] = "DarkYellow",
+                        [04] = "DarkBlue",
+                        [05] = "DarkMagenta",
+                        [06] = "DarkCyan",
+                        [07] = "LightGrey",
+                        [08] = "DarkGrey",
+                        [09] = "LightRed",
+                        [10] = "LightGreen",
+                        [11] = "LightYellow",
+                        [12] = "LightBlue",
+                        [13] = "LightMagenta",
+                        [14] = "LightCyan",
+                        [15] = "White",
+                    },
+                })
+                baleia.once(vim.api.nvim_get_current_buf())
+            end, { bang = true })
+        end,
+    },
+    {
+        "ibhagwan/fzf-lua",
+        -- optional for icon support
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        config = function()
+            -- calling `setup` is optional for customization
+            require("fzf-lua").setup({})
+        end,
     },
 }

@@ -50,4 +50,4 @@ for _, ls in ipairs(servers) do
     })
 end
 
-require("ufo").setup()
+-- require("ufo").setup()

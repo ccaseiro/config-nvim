@@ -1,16 +1,106 @@
 return {
     {
+        "FabijanZulj/blame.nvim",
+        keys = {
+            { "<leader>gB", "<cmd>BlameToggle<cr>", desc = "Current File History" },
+        },
+        opts = {
+            date_format = "%Y-%m-%d %H:%M",
+            max_summary_width = 50,
+            format_fn = function(line_porcelain, config, idx)
+                local author_initials = function(author_name)
+                    return author_name:gsub("%a*%s*", function(c)
+                        return string.upper(string.sub(c, 0, 1))
+                    end)
+                end
+
+                local hash = string.sub(line_porcelain.hash, 0, 7)
+                local line_with_hl = {}
+                local is_commited = hash ~= "0000000"
+                if is_commited then
+                    local summary
+                    if #line_porcelain.summary > config.max_summary_width then
+                        summary = string.sub(line_porcelain.summary, 0, config.max_summary_width - 3) .. "..."
+                    else
+                        summary = line_porcelain.summary
+                    end
+                    line_with_hl = {
+                        idx = idx,
+                        values = {
+                            {
+                                textValue = hash,
+                                hl = "Comment",
+                            },
+                            {
+                                textValue = os.date(config.date_format, line_porcelain.committer_time),
+                                hl = hash,
+                            },
+                            {
+                                textValue = author_initials(line_porcelain.author),
+                                hl = hash,
+                            },
+                            {
+                                textValue = summary,
+                                hl = hash,
+                            },
+                        },
+                        format = "%s %s %s %s",
+                    }
+                else
+                    line_with_hl = {
+                        idx = idx,
+                        values = {
+                            {
+                                textValue = "Not commited",
+                                hl = "Comment",
+                            },
+                        },
+                        format = "%s",
+                    }
+                end
+                return line_with_hl
+            end,
+        },
+    },
+    {
         "sindrets/diffview.nvim",
         lazy = false,
         keys = {
-            { "<leader>gL", "<cmd>DiffviewFileHistory %<cr>", desc = "Current File History" },
-            { "<leader>gB", "<cmd>DiffviewFileHistory<cr>", desc = "Current Branch History" },
+            { "<leader>gdf", "<cmd>DiffviewFileHistory % --no-merges<cr>", desc = "Current File History" },
+            {
+                "<leader>gdp",
+                "<cmd>DiffviewOpen origin/HEAD...HEAD --imply-local<cr>",
+                desc = "Review PR",
+            },
+            {
+                "<leader>gdc",
+                "<cmd>DiffviewFileHistory --range=origin/HEAD...HEAD --right-only --no-merges<cr>",
+                desc = "Review Individual PR Commits",
+            },
+            { "<leader>gdh", "<cmd>DiffviewFileHistory<cr>", desc = "Current Branch History" },
+            { "<leader>gdo", "<cmd>DiffviewOpen<cr>", desc = "Diffview open" },
+            { "<leader>gdq", "<cmd>DiffviewClose<cr>", desc = "Diffview close" },
+            --
+            { "<leader>gL", "<cmd>DiffviewFileHistory % --no-merges<cr>", desc = "Current File History" },
+            {
+                "<leader>gL",
+                "<cmd>'<,'>:DiffviewFileHistory --no-merges<cr>",
+                mode = "v",
+                desc = "Current File History",
+            },
+            {
+                "<leader>gP",
+                "<cmd>DiffviewOpen origin/HEAD...HEAD --imply-local<cr>",
+                desc = "Review PR",
+            },
+            { "<leader>gH", "<cmd>DiffviewFileHistory<cr>", desc = "Current Branch History" },
             { "<leader>gO", "<cmd>DiffviewOpen<cr>", desc = "Diffview open" },
             { "<leader>gC", "<cmd>DiffviewClose<cr>", desc = "Diffview close" },
         },
     },
     {
         "NeogitOrg/neogit",
+        -- branch = "nightly",
         dependencies = { "nvim-lua/plenary.nvim", "sindrets/diffview.nvim" },
         opts = {
             disable_commit_confirmation = true,
@@ -41,79 +131,56 @@ return {
                 map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
                 map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
                 map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
-                map("n", "<leader>ghp", gs.preview_hunk_inline, "Preview Hunk Inline")
+                map("n", "<leader>ghP", gs.preview_hunk_inline, "Preview Hunk Inline")
+                map("n", "<leader>ghp", gs.preview_hunk, "Preview Hunk")
                 map("n", "<leader>ghb", function() gs.blame_line({ full = true }) end, "Blame Line")
                 map("n", "<leader>ghd", gs.diffthis, "Diff This")
                 map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
                 map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
+                -- Toggle
+                map('n', '<leader>gtb', gs.toggle_current_line_blame, "Toggle current line blame")
+                map('n', '<leader>gtd', gs.toggle_deleted, "Toggle deleted")
+                map('n', '<leader>gts', gs.toggle_signs, "Toggle sign column")
+                map('n', '<leader>gtn', gs.toggle_numhl, "Toggle num highligth")
+                map('n', '<leader>gtl', gs.toggle_linehl, "Toggle line highlight")
+                map('n', '<leader>gtw', gs.toggle_word_diff, "Toggle word diff")
+                -- Double map
+                map("n", "<leader>gb", function() gs.blame_line({ full = true }) end, "Blame Line")
+                map("n", "<leader>gp", gs.preview_hunk, "Preview Hunk")
             end,
         },
-        -- config = function()
-        --     require("gitsigns").setup({
-        --         -- current_line_blame_opts = {
-        --         --     virt_text = true,
-        --         --     virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
-        --         --     delay = 1000,
-        --         --     ignore_whitespace = false,
-        --         -- },
-        --         -- current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
-        --
-        --         on_attach = function(bufnr)
-        --             local gs = package.loaded.gitsigns
-        --
-        --             local function map(mode, l, r, opts)
-        --                 opts = opts or {}
-        --                 opts.buffer = bufnr
-        --                 vim.keymap.set(mode, l, r, opts)
-        --             end
-        --
-        --             -- Navigation
-        --             map("n", "]h", function()
-        --                 if vim.wo.diff then
-        --                     return "]h"
-        --                 end
-        --                 vim.schedule(function()
-        --                     gs.next_hunk()
-        --                 end)
-        --                 return "<Ignore>"
-        --             end, { expr = true, desc = "next hunk" })
-        --
-        --             map("n", "[h", function()
-        --                 if vim.wo.diff then
-        --                     return "[h"
-        --                 end
-        --                 vim.schedule(function()
-        --                     gs.prev_hunk()
-        --                 end)
-        --                 return "<Ignore>"
-        --             end, { expr = true, desc = "prev hunk" })
-        --
-        --             -- Actions
-        --             -- map({'n', 'v'}, '<leader>hs', ':Gitsigns stage_hunk<CR>')
-        --             -- map({'n', 'v'}, '<leader>hr', ':Gitsigns reset_hunk<CR>')
-        --
-        --             map("n", "<leader>ghu", gs.undo_stage_hunk, { desc = "Unstage Stage" })
-        --             map("n", "<leader>ghR", gs.reset_buffer, { desc = "Reset Buffer" })
-        --             map("n", "<leader>ghS", gs.stage_buffer, { desc = "Stage Buffer" })
-        --             map("n", "<leader>ghs", gs.stage_hunk, { desc = "Stage hunk" })
-        --             map("n", "<leader>ghp", gs.preview_hunk, { desc = "Preview hunk" })
-        --             map("n", "<leader>ghP", gs.preview_hunk_inline, { desc = "Preview hunk inline" })
-        --             map("n", "<leader>ghb", function()
-        --                 gs.blame_line({ full = true })
-        --             end, { desc = "Blame line" })
-        --             map("n", "<leader>tb", gs.toggle_current_line_blame, { desc = "Toggle blame" })
-        --             map("n", "<leader>ghB", gs.toggle_current_line_blame, { desc = "Toggle blame" })
-        --             map("n", "<leader>ghd", gs.diffthis, { desc = "Diff" })
-        --             map("n", "<leader>ghD", function()
-        --                 gs.diffthis("~")
-        --             end, { desc = "Diff ~" })
-        --             map("n", "<leader>ghx", gs.toggle_deleted, { desc = "Toggle deleted" })
-        --
-        --             -- Text object
-        --             map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Select hunk" })
-        --         end,
-        --     })
-        -- end,
     },
     { "tpope/vim-fugitive" },
+    {
+        "SuperBo/fugit2.nvim",
+        opts = {
+            width = 100,
+        },
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "nvim-tree/nvim-web-devicons",
+            "nvim-lua/plenary.nvim",
+            {
+                "chrisgrieser/nvim-tinygit", -- optional: for Github PR view
+                dependencies = { "stevearc/dressing.nvim" },
+            },
+        },
+        cmd = { "Fugit2", "Fugit2Graph" },
+        keys = {
+            { "<leader>gf", mode = "n", "<cmd>Fugit2<cr>" },
+        },
+    },
+    {
+        -- optional: for diffview.nvim integration
+        "sindrets/diffview.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        -- lazy, only load diffview by these commands
+        cmd = {
+            "DiffviewFileHistory",
+            "DiffviewOpen",
+            "DiffviewToggleFiles",
+            "DiffviewFocusFiles",
+            "DiffviewRefresh",
+        },
+    },
 }
