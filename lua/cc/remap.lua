@@ -109,7 +109,6 @@ nnoremap("<leader>wL", "<C-w>L")
 -- wk.register({["<C-n>"] = {"<cmd>ToggleTermToggleAll<CR>", "ToggleTermToggleAll"}}, {mode={"n", "t"}})
 
 vim.api.nvim_set_keymap("n", "<leader>ot", "<cmd>ToggleTermToggleAll<CR>", { noremap = true, silent = true })
-wk.register({ ["<C-y>"] = { "<cmd>ToggleTermToggleAll<CR>", "ToggleTermToggleAll" } }, { mode = { "n", "t" } })
 
 vim.api.nvim_set_keymap("n", "<leader>of", "<cmd>ToggleTerm direction=float<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap(
