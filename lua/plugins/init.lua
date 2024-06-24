@@ -194,6 +194,13 @@ return {
 
     {
         "akinsho/toggleterm.nvim",
+        lazy = false,
+        keys = {
+            { "<C-/>", "<cmd>ToggleTerm<cr>", desc = "Terminal" },
+            { "<C-_>", "<cmd>ToggleTerm<cr>", desc = "Terminal" },
+            { "<C-/>", "<cmd>close<cr>", desc = "Hide Terminal", mode = "t" },
+            { "<C-_>", "<cmd>close<cr>", desc = "which_key_ignore", mode = "t" },
+        },
         config = function()
             require("cc/toggleterm")
         end,
@@ -290,7 +297,7 @@ return {
         "mbbill/undotree",
         lazy = false,
         keys = {
-            { "<leader>tu", "<cmd>UndotreeToggle | UndotreeFocus<cr>", desc = "Toggle Undotree" },
+            { "<leader>uu", "<cmd>UndotreeToggle | UndotreeFocus<cr>", desc = "Toggle Undotree" },
         },
     },
     {
@@ -568,7 +575,6 @@ return {
     -- },
     {
         "folke/trouble.nvim",
-        branch = "dev",
         -- lazy = false,
         -- cmd = { "Trouble" },
         -- event = "VeryLazy",

@@ -34,6 +34,9 @@ return {
     lazy = false,
     cmd = "Telescope",
     keys = {
+        -- { "<leader><space>", LazyVim.telescope("files"), desc = "Find Files (Root Dir)" },
+        -- find
+        { "<leader>fc", LazyVim.telescope.config_files(), desc = "Find Config File" },
         -- git
         { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "commits" },
         { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "status" },

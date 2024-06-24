@@ -1,8 +1,10 @@
 require("toggleterm").setup({
     size = 25,
     start_in_insert = true,
-    open_mapping = [[<c-n>]],
-    direction = "horizontal",
+    -- open_mapping = [[<c-n>]],
+    -- open_mapping = [[<c-\>]],
+    -- open_mapping = [[<c-/>]],
+    direction = "float", -- it can be: 'vertical' | 'horizontal' | 'tab' | 'float'
 })
 
 local Terminal = require("toggleterm.terminal").Terminal

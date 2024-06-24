@@ -4,6 +4,7 @@ vim.g.maplocalleader = " m"
 local opt = vim.opt
 
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
+opt.wrap = false -- Disable line wrap
 vim.opt.number = true
 vim.opt.relativenumber = true
 

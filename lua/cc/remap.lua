@@ -52,16 +52,9 @@ wk.register({ ["<leader>fr"] = { "<cmd>Telescope oldfiles<cr>", "Recent files" }
 wk.register({ ["<leader>fy"] = { '<cmd>let @+ = expand("%:p")<CR>', "Yank file path" } })
 wk.register({ ["<leader><leader>"] = { "<cmd>Telescope find_files<cr>", "File find" } })
 
--- wk.register({ ["<leader>ghb"] = { ":Gitsigns blame_line<cr>", "blame line" } })
--- wk.register({ ["<leader>ghp"] = { ":Gitsigns preview_hunk<cr>", "previw hunk" } })
--- wk.register({ ["<leader>ghP"] = { ":Gitsigns preview_hunk_inline<cr>", "previw hunk inline" } })
--- wk.register({ ["<leader>ghr"] = { ":Gitsigns reset_hunk<cr>", "reset hunk" } }, { mode = { "n", "v" } })
--- wk.register({ ["<leader>ghs"] = { ":Gitsigns stage_hunk<cr>", "stage hunk" } }, { mode = { "n", "v" } })
--- wk.register({ ["<leader>ghx"] = { ":Gitsigns reset_hunk<cr>", "reset hunk" } }, { mode = { "n", "v" } })
-
 -- toggle options
-map("n", "<leader>tb", "<cmd>Gitsigns toggle_current_line_blame<cr>", { desc = "Toggle Git Blame" })
-map("n", "<leader>ts", require("cc.util").toggle, { desc = "Toggle format on Save" })
+map("n", "<leader>ub", "<cmd>Gitsigns toggle_current_line_blame<cr>", { desc = "Toggle Git Blame" })
+map("n", "<leader>uf", require("cc.util").toggle, { desc = "Toggle format on Save" })
 
 -- wk.register({ ["<leader>m"] = { name = "+localleader" } })
 
@@ -109,6 +102,7 @@ nnoremap("<leader>wL", "<C-w>L")
 -- wk.register({["<C-n>"] = {"<cmd>ToggleTermToggleAll<CR>", "ToggleTermToggleAll"}}, {mode={"n", "t"}})
 
 vim.api.nvim_set_keymap("n", "<leader>ot", "<cmd>ToggleTermToggleAll<CR>", { noremap = true, silent = true })
+wk.register({ ["<C-y>"] = { "<cmd>ToggleTermToggleAll<CR>", "ToggleTermToggleAll" } }, { mode = { "n", "t" } })
 
 vim.api.nvim_set_keymap("n", "<leader>of", "<cmd>ToggleTerm direction=float<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap(
@@ -226,8 +220,11 @@ map("t", "<C-h>", "<cmd>wincmd h<cr>", { desc = "Go to left window" })
 map("t", "<C-j>", "<cmd>wincmd j<cr>", { desc = "Go to lower window" })
 map("t", "<C-k>", "<cmd>wincmd k<cr>", { desc = "Go to upper window" })
 map("t", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Go to right window" })
+-- map("n", "<C-/>", "<cmd>ToggleTerm<cr>", { desc = "Terminal" })
+-- map("n", "<C-/>", "<cmd>ToggleTerm<cr>", { desc = "Terminal" })
+-- map("n", "<C-_>", "<cmd>ToggleTerm<cr>", { desc = "which_key_ignore" })
 -- map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
-map("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
+-- map("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
 
 -- tabs
 map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
