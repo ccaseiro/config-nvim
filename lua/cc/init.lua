@@ -1,5 +1,4 @@
 require("cc.set")
-require("cc.lazy")
 require("cc.autocmds")
 require("cc.remap")
 require("cc.other")
