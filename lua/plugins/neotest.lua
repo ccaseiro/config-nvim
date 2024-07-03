@@ -49,7 +49,7 @@ return {
             {
                 "<leader>tO",
                 function()
-                    require("neotest").output_panel.toggle()
+                    require("neotest").output_panel.open({ enter = true })
                 end,
                 desc = "Toggle Output Panel",
             },
@@ -77,6 +77,24 @@ return {
             {
                 "<leader>tv",
                 "<cmd>lua require('neotest').run.run({ extra_args = {'-vv'}})<cr>",
+                desc = "run nearest test (verbose)",
+            },
+            {
+                "<leader>tar",
+                function()
+                    vim.ui.input({ prompt = "Extra Args: ", default = "-vv" }, function(input)
+                        require("neotest").run.run({ extra_args = { input } })
+                    end)
+                end,
+                desc = "run nearest test (verbose)",
+            },
+            {
+                "<leader>taT",
+                function()
+                    vim.ui.input({ prompt = "Extra Args: ", default = "-m " }, function(input)
+                        require("neotest").run.run({ vim.uv.cwd(), extra_args = { input } })
+                    end)
+                end,
                 desc = "run nearest test (verbose)",
             },
         },
