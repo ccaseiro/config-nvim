@@ -7,4 +7,5 @@ vim.cmd([[command! -nargs=0 MiniSessionConfig :lua MiniSessions.read('config')]]
 vim.cmd([[command! -nargs=0 MiniSessionVapStConnector :lua MiniSessions.read('vap-st-connector')]])
 vim.cmd([[command! -nargs=0 MiniSessionVapKafkaCore :lua MiniSessions.read('vap-kafka-core')]])
 vim.cmd([[command! -nargs=0 MiniSessionNotes :lua MiniSessions.read('Notes')]])
+vim.cmd([[command! -nargs=0 MiniSessionNeovim :lua MiniSessions.read('neovim')]])
 -- vim.cmd([[command! -nargs=0 GoToFile :Telescope find_files]])
