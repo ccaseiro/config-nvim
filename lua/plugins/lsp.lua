@@ -180,6 +180,32 @@ return {
                 on_attach = on_attach,
                 -- on_new_config = on_new_config,
             })
+            lspconfig.lua_ls.setup({
+                settings = {
+                    Lua = {
+                        workspace = {
+                            checkThirdParty = false,
+                        },
+                        codeLens = {
+                            enable = true,
+                        },
+                        completion = {
+                            callSnippet = "Replace",
+                        },
+                        doc = {
+                            privateName = { "^_" },
+                        },
+                        hint = {
+                            enable = true,
+                            setType = false,
+                            paramType = true,
+                            paramName = "Disable",
+                            semicolon = "Disable",
+                            arrayIndex = "Disable",
+                        },
+                    },
+                },
+            })
         end,
     },
 }
